@@ -42,6 +42,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	/**
 	 * Activity names of the default params from {@link #addDefaultParams(EpisimConfigGroup)}.
 	 */
+//	does this work?
 	public static final String[] DEFAULT_ACTIVITIES = {
 			"pt", "work", "leisure","kindergarden","elementary","junior_high","high_school","university", "other", "fjlm","tjlm",
 			"home_secular","home_ultra-orthodox","home_arab","home_tjlm","home_fjlm","religion_jewish","religion_arab"
