@@ -32,13 +32,14 @@ import org.matsim.episim.EpisimConfigGroup;
 import org.matsim.episim.model.AgeDependentProgressionModel;
 import org.matsim.episim.model.ProgressionModel;
 import org.matsim.episim.policy.FixedPolicy;
+import org.matsim.episim.utils.ReadRestrictions;
 
 /**
  * Scenario based on the publicly available OpenBerlin scenario (https://github.com/matsim-scenarios/matsim-berlin).
  */
 public class JlmEpisimEverythingGoes extends AbstractModule {
-	final public static String OUTPUT_FOLDER = "E:/geosimlab/MATSim-JLM/Episim-JLM_Output/berlin_scores/";
-	final public static String RUN_ID = "/" + 4;
+	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
+	final public static String RUN_ID = "/" + 5;
 	/**
 	 * Activity names of the default params from {@link #addDefaultParams(EpisimConfigGroup)}.
 	 */
@@ -95,10 +96,10 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		EpisimConfigGroup episimConfig = ConfigUtils.addOrGetModule(config, EpisimConfigGroup.class);
 		config.global().setCoordinateSystem("EPSG:2039");
 		config.controler().setOutputDirectory(OUTPUT_FOLDER + RUN_ID + "/");
-		config.facilities().setInputFile("E:/geosimlab/MATSim-JLM/Episim-JLM_input/berlin_scores/11/facilities1.0.xml.gz");
-		config.network().setInputFile("E:/geosimlab/MATSim-JLM/MATSim-JLM_Output/mode_choice/berlin/11/11.output_network.xml.gz");
-		config.plans().setInputFile("E:/geosimlab/MATSim-JLM/Episim-JLM_input/berlin_scores/11/population1.0.xml.gz");
-		String url = "E:/geosimlab/MATSim-JLM/Episim-JLM_input/berlin_scores/11/11.output_events-1.0.xml.gz";
+		config.facilities().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/facilities1.0.xml.gz");
+		config.network().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/11.output_network.xml.gz");
+		config.plans().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/population1.0.xml.gz");
+		String url = "C:/GeoSimLab/episim_jlm/Input_data/matsim_files/11.output_events-1.0.xml.gz";
 		
 		episimConfig.setInputEventsFile(url);
 		//First infection in israel mother fucker
@@ -110,19 +111,19 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 
 		
 		//  episimConfig.setOutputEventsFolder("events");
-		long closingIteration = 3;
+//		long closingIteration = 3;
 
 		addDefaultParams(episimConfig);
 		
 //		episimConfig.setPolicy(FixedPolicy.class, FixedPolicy.config()
 //				.shutdown(closingIteration, DEFAULT_ACTIVITIES)
-////				.restrict(closingIteration, 0.2, "work")
-////				.restrict(closingIteration, 0.3, "other")
-////				.restrict(closingIteration, 0.5, "pt")
+//				.restrict(closingIteration, 0.2, "work")
+//				.restrict(closingIteration, 0.3, "other")
+//				.restrict(closingIteration, 0.5, "pt")
 //				.open(closingIteration + 40, DEFAULT_ACTIVITIES)
 //				.build()
 //		);
-
+		episimConfig.setPolicy(FixedPolicy.class, ReadRestrictions.restrictions());
 		return config;
 	}
 

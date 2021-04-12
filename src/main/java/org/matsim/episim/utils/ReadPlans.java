@@ -22,9 +22,9 @@ import com.opencsv.CSVWriter;
 public class ReadPlans {
 	private static final Logger log = Logger.getLogger(ReadPlans.class);
 	public static void main(String[] args) {
-		Population pop = PopulationUtils.readPopulation("E:/geosimlab/MATSim-JLM/Episim-JLM_input/berlin_scores/11/population1.0.xml.gz");
+		Population pop = PopulationUtils.readPopulation("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/population1.0.xml.gz");
 		Map<Id<Person>, ? extends Person> ids = pop.getPersons();
-		File f = new File("E:/geosimlab/MATSim-JLM/Episim-JLM_input/data_recevied_input/11.pop.csv");
+		File f = new File("C:/GeoSimLab/episim_jlm/Input_data/analysis/11.pop.csv");
 		String filename = "";
 		if (f.getParent() != null)
 			filename = f.getParent() + "/";
