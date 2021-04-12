@@ -118,7 +118,7 @@ public abstract class AbstractContactModel implements ContactModel {
 													String otherPersonsActivity) {
 		buffer.setLength(0);
 		if (container instanceof EpisimFacility) {
-			buffer.append(leavingPersonsActivity).append("_").append(otherPersonsActivity);
+			buffer.append(leavingPersonsActivity).append("$").append(otherPersonsActivity);
 			return buffer;
 		} else if (container instanceof EpisimVehicle) {
 			buffer.append("pt");
