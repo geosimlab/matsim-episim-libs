@@ -37,9 +37,14 @@ import org.matsim.core.config.ConfigUtils;
 import org.matsim.core.controler.OutputDirectoryLogging;
 import org.matsim.episim.EpisimModule;
 import org.matsim.episim.EpisimRunner;
+import org.matsim.run.modules.JlmEpisimEverythingGoes;
 import org.matsim.run.modules.OpenBerlinScenario;
 import picocli.CommandLine;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.lang.reflect.Constructor;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -119,6 +124,13 @@ public final class RunEpisim implements Callable<Integer> {
 				.setUnmatchedOptionsArePositionalParams(true)
 				.execute(args);
 		// (the "execute" will run "RunEpisim#call()")
+		try {
+			runCommand("Rscript --vanilla C:/GeoSimLab/episim_jlm/analysis/analysis_first.R " +
+		JlmEpisimEverythingGoes.OUTPUT_FOLDER + JlmEpisimEverythingGoes.RUN_ID + "/", "C:/Program Files/R/R-4.0.4/bin");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
@@ -242,7 +254,9 @@ public final class RunEpisim implements Callable<Integer> {
 		printBindings(injector);
 
 		Config config = injector.getInstance(Config.class);
-
+		
+		
+		
 		// We collect the remaining unparsed options and give them to the MATSim command line util
 		// it will parse options to modify the config like --config:controler.runId
 		if (remainder != null)
@@ -256,6 +270,7 @@ public final class RunEpisim implements Callable<Integer> {
 		runner.run(maxIterations);
 
 		if (logToOutput) OutputDirectoryLogging.closeOutputDirLogging();
+		
 
 		return 0;
 	}
@@ -267,4 +282,31 @@ public final class RunEpisim implements Callable<Integer> {
 		}
 	}
 
+	public static void runCommand(String command, String dirStr) throws IOException {
+		System.out.println("*********************************************************");
+		System.out.println("command:" + command);
+		String[] commands = { "cmd", "/C", command };// the string is on order to handle with pipes,
+		// https://stackoverflow.com/questions/5928225/how-to-make-pipes-work-with-runtime-exec
+		File dir = new File(dirStr);
+		Runtime rt = Runtime.getRuntime();
+		Process proc = rt.exec(commands, null, dir);
+
+		BufferedReader stdInput = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+
+		BufferedReader stdError = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
+
+		// Read the output from the command
+		System.out.println("Here is the standard output of the command:\n");
+		String s = null;
+		while ((s = stdInput.readLine()) != null) {
+			System.out.println(s);
+		}
+
+		// Read any errors from the attempted command
+		System.out.println("Here is the standard error of the command (if any):\n");
+		while ((s = stdError.readLine()) != null) {
+			System.out.println("\u001B[31m" + s);
+
+		}
+	}
 }
