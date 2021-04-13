@@ -54,7 +54,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions.csv";
 
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 10;
+	final public static String RUN_ID = "/" + 11;
 	/**
 	 * Activity names of the default params from
 	 * {@link #addDefaultParams(EpisimConfigGroup)}.
@@ -120,7 +120,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		episimConfig.setInitialInfections(1);
 		episimConfig.setFacilitiesHandling(EpisimConfigGroup.FacilitiesHandling.snz);
 		episimConfig.setSampleSize(1);
-		episimConfig.setCalibrationParameter(0.000001);
+		episimConfig.setCalibrationParameter(0.00001);
 
 		// episimConfig.setOutputEventsFolder("events");
 //		long closingIteration = 3;
