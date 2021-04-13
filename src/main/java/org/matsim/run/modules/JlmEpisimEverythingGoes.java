@@ -121,7 +121,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		episimConfig.setStartDate(LocalDate.of(2020, 2, 21));
 		episimConfig.setInitialInfections(1);
 		episimConfig.setFacilitiesHandling(EpisimConfigGroup.FacilitiesHandling.snz);
-		episimConfig.setSampleSize(0.001);
+		episimConfig.setSampleSize(1);
 		episimConfig.setCalibrationParameter(0.000008);
 
 		// episimConfig.setOutputEventsFolder("events");
