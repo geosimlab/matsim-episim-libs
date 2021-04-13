@@ -79,7 +79,7 @@ public abstract class AbstractContactModel implements ContactModel {
 		this.trackingMinDuration = ConfigUtils.addOrGetModule(config, TracingConfigGroup.class).getMinDuration();
 	}
 
-	private static boolean hasDiseaseStatusRelevantForInfectionDynamics(EpisimPerson personWrapper) {
+	public static boolean hasDiseaseStatusRelevantForInfectionDynamics(EpisimPerson personWrapper) {
 		switch (personWrapper.getDiseaseStatus()) {
 			case susceptible:
 			case contagious:

@@ -37,6 +37,8 @@ import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigUtils;
 import org.matsim.episim.EpisimConfigGroup;
 import org.matsim.episim.model.AgeDependentProgressionModel;
+import org.matsim.episim.model.ContactModel;
+import org.matsim.episim.model.HouseholdContactModel;
 import org.matsim.episim.model.ProgressionModel;
 import org.matsim.episim.policy.FixedPolicy;
 import org.matsim.episim.policy.Restriction;
@@ -95,7 +97,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 
 	@Override
 	protected void configure() {
-//		bind(ContactModel.class).to(params.contactModel).in(Singleton.class);
+		bind(ContactModel.class).to(HouseholdContactModel.class).in(Singleton.class);
 		bind(ProgressionModel.class).to(AgeDependentProgressionModel.class).in(Singleton.class);
 //		bind(InfectionModel.class).to(AgeDependentInfectionModelWithSeasonality.class).in(Singleton.class);
 	}
@@ -119,7 +121,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		episimConfig.setStartDate(LocalDate.of(2020, 2, 21));
 		episimConfig.setInitialInfections(1);
 		episimConfig.setFacilitiesHandling(EpisimConfigGroup.FacilitiesHandling.snz);
-		episimConfig.setSampleSize(1);
+		episimConfig.setSampleSize(0.001);
 		episimConfig.setCalibrationParameter(0.000008);
 
 		// episimConfig.setOutputEventsFolder("events");
