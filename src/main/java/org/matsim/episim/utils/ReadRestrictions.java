@@ -26,9 +26,9 @@ public class ReadRestrictions {
 			String[] row;
 			while ((row = csvReader.readNext()) != null) {
 				LocalDate date = LocalDate.of(Integer.parseInt(row[2]), Integer.parseInt(row[3]), Integer.parseInt(row[4]));
-				Restriction fraction = Restriction.of(Integer.parseInt(row[1]));
+				Restriction fraction = Restriction.of(Double.parseDouble(row[1]));
 				String activity = row[0];
-				policy.restrict(date, fraction, activity);
+				policy = policy.restrict(date, fraction, activity);
 				System.out.println(row[0]);
 
 			}
