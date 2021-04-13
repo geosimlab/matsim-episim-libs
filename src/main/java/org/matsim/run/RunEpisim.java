@@ -53,6 +53,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Main class to start episim. It will plug the {@link EpisimModule} together with user supplied modules and start
@@ -118,12 +119,13 @@ public final class RunEpisim implements Callable<Integer> {
 	private RunEpisim() {
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		new CommandLine(new RunEpisim())
 				.setStopAtUnmatched(false)
 				.setUnmatchedOptionsArePositionalParams(true)
 				.execute(args);
 		// (the "execute" will run "RunEpisim#call()")
+		TimeUnit.SECONDS.sleep(20);
 		try {
 			runCommand("Rscript --vanilla C:/GeoSimLab/episim_jlm/analysis/analysis_first.R " +
 		JlmEpisimEverythingGoes.OUTPUT_FOLDER + JlmEpisimEverythingGoes.RUN_ID + "/", "C:/Program Files/R/R-4.0.4/bin");
