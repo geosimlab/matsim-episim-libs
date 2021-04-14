@@ -103,6 +103,10 @@ public final class HouseholdContactModel extends AbstractContactModel {
 		if (act1.equals("home_tjlm") ||act2.equals("home_tjlm") || act1.equals("fjlm") ||act2.equals("fjlm") ) {
 			return false;
 		}
+//		test - allow infections only in the same type of activity
+		if(!act1.equals(act2)) {
+			return false;
+		}
 		return (hasDiseaseStatusRelevantForInfectionDynamics(person1) && hasDiseaseStatusRelevantForInfectionDynamics(person2));
 	}
 	private void infectionDynamicsGeneralized(EpisimPerson personLeavingContainer, EpisimContainer<?> container, double now) {
