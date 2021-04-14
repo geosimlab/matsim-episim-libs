@@ -99,6 +99,10 @@ public final class HouseholdContactModel extends AbstractContactModel {
 				}
 			}
 		}
+//		Can't infect outside of JLM - not our problem
+		if (act1.equals("home_tjlm") ||act2.equals("home_tjlm") || act1.equals("fjlm") ||act2.equals("fjlm") ) {
+			return false;
+		}
 		return (hasDiseaseStatusRelevantForInfectionDynamics(person1) && hasDiseaseStatusRelevantForInfectionDynamics(person2));
 	}
 	private void infectionDynamicsGeneralized(EpisimPerson personLeavingContainer, EpisimContainer<?> container, double now) {
