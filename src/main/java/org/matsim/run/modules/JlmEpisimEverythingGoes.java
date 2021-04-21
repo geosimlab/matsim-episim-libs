@@ -58,7 +58,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions.csv";
 
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 19;
+	final public static String RUN_ID = "/" + 20;
 	/**
 	 * Activity names of the default params from
 	 * {@link #addDefaultParams(EpisimConfigGroup)}.
@@ -121,11 +121,12 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 
 		episimConfig.setInputEventsFile(url);
 		// First infection in israel mother fucker
-		episimConfig.setStartDate(LocalDate.of(2020, 2, 21));
-		episimConfig.setInitialInfections(1);
+		episimConfig.setStartDate(LocalDate.of(2020, 3, 5));
+		episimConfig.setInitialInfections(100);
 		episimConfig.setFacilitiesHandling(EpisimConfigGroup.FacilitiesHandling.snz);
 		episimConfig.setSampleSize(1);
 		episimConfig.setCalibrationParameter(0.01);
+		episimConfig.setInitialInfectionDistrict("yes");
 
 		// episimConfig.setOutputEventsFolder("events");
 //		long closingIteration = 3;
