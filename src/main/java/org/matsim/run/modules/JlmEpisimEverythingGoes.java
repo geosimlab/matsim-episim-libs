@@ -39,7 +39,9 @@ import org.matsim.episim.EpisimConfigGroup;
 import org.matsim.episim.model.AgeDependentProgressionModel;
 import org.matsim.episim.model.ContactModel;
 import org.matsim.episim.model.HouseholdContactModel;
+import org.matsim.episim.model.InitialInfectionHandler;
 import org.matsim.episim.model.ProgressionModel;
+import org.matsim.episim.model.RandomInitialInfections;
 import org.matsim.episim.policy.FixedPolicy;
 import org.matsim.episim.policy.Restriction;
 import org.matsim.episim.policy.FixedPolicy.ConfigBuilder;
@@ -56,7 +58,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions.csv";
 
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 18;
+	final public static String RUN_ID = "/" + 19;
 	/**
 	 * Activity names of the default params from
 	 * {@link #addDefaultParams(EpisimConfigGroup)}.
@@ -99,6 +101,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	protected void configure() {
 		bind(ContactModel.class).to(HouseholdContactModel.class).in(Singleton.class);
 		bind(ProgressionModel.class).to(AgeDependentProgressionModel.class).in(Singleton.class);
+		bind(InitialInfectionHandler.class).to(RandomInitialInfections.class).in(Singleton.class);
 //		bind(InfectionModel.class).to(AgeDependentInfectionModelWithSeasonality.class).in(Singleton.class);
 	}
 
