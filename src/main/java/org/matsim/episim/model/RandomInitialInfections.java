@@ -64,10 +64,10 @@ public class RandomInitialInfections implements InitialInfectionHandler {
 					.filter(p -> p.getDiseaseStatus() == EpisimPerson.DiseaseStatus.susceptible)
 					.collect(Collectors.toList());
 
-			if (candidates.size() < numInfections) {
-				log.warn("Not enough persons match the initial infection requirement, using whole population...");
-				candidates = Lists.newArrayList(persons.values());
-			}
+//			if (candidates.size() < numInfections) {
+//				log.warn("Not enough persons match the initial infection requirement, using whole population...");
+//				candidates = Lists.newArrayList(persons.values());
+//			}
 
 			while (numInfections > 0 && initialInfectionsLeft > 0 && candidates.size() > 0) {
 				EpisimPerson randomPerson = candidates.remove(rnd.nextInt(candidates.size()));
