@@ -30,6 +30,7 @@ import com.opencsv.exceptions.CsvValidationException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.matsim.api.core.v01.Scenario;
@@ -58,7 +59,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions.csv";
 
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 22;
+	final public static String RUN_ID = "/" + 23;
 	/**
 	 * Activity names of the default params from
 	 * {@link #addDefaultParams(EpisimConfigGroup)}.
@@ -127,7 +128,13 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		episimConfig.setSampleSize(1);
 		episimConfig.setCalibrationParameter(0.01);
 		episimConfig.setInitialInfectionDistrict("yes");
-
+		
+		Map<LocalDate, Integer> infectionsPerDay = null;
+		for (int i = 0;i < 10;i++) {
+			infectionsPerDay.put(LocalDate.of(2020, 3, 5 + i), 10);	
+		}
+		
+		episimConfig.setInfections_pers_per_day(infectionsPerDay);
 		// episimConfig.setOutputEventsFolder("events");
 //		long closingIteration = 3;
 
