@@ -128,7 +128,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		episimConfig.setInitialInfections(100);
 		episimConfig.setFacilitiesHandling(EpisimConfigGroup.FacilitiesHandling.snz);
 		episimConfig.setSampleSize(1);
-		episimConfig.setCalibrationParameter(0.0001);
+		episimConfig.setCalibrationParameter(0.00001);
 		episimConfig.setInitialInfectionDistrict("yes");
 		
 		Map<LocalDate, Integer> infectionsPerDay = new TreeMap<LocalDate, Integer>();
