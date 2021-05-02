@@ -82,8 +82,8 @@ public final class HouseholdContactModel extends AbstractContactModel {
 		// at least one of the persons must be susceptible
 		if (person1.getDiseaseStatus() != EpisimPerson.DiseaseStatus.susceptible && person2.getDiseaseStatus() != EpisimPerson.DiseaseStatus.susceptible)
 			return false;
-//		facility seperation to households
-//		do agents have a homeFacilityRefId? externals dont
+//		facility separation to households
+//		do agents have a homeFacilityRefId? externals don't
 		if(person1.getAttributes().getAttribute("homeFacilityRefId") != null && person2.getAttributes().getAttribute("homeFacilityRefId") != null) {
 //			are they in the same activity in the facilty?
 			if(act1.equals(act2)) {
@@ -104,9 +104,9 @@ public final class HouseholdContactModel extends AbstractContactModel {
 			return false;
 		}
 //		test - allow infections only in the same type of activity
-		if(!act1.equals(act2)) {
-			return false;
-		}
+//		if(!act1.equals(act2)) {
+//			return false;
+//		}
 		return (hasDiseaseStatusRelevantForInfectionDynamics(person1) && hasDiseaseStatusRelevantForInfectionDynamics(person2));
 	}
 	private void infectionDynamicsGeneralized(EpisimPerson personLeavingContainer, EpisimContainer<?> container, double now) {
