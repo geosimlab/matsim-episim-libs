@@ -31,6 +31,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Map;
+import java.util.TreeMap;
 
 import org.apache.log4j.Logger;
 import org.matsim.api.core.v01.Scenario;
@@ -106,6 +107,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 //		bind(InfectionModel.class).to(AgeDependentInfectionModelWithSeasonality.class).in(Singleton.class);
 	}
 
+	@SuppressWarnings("null")
 	@Provides
 	@Singleton
 	public Config config() {
@@ -129,7 +131,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		episimConfig.setCalibrationParameter(0.01);
 		episimConfig.setInitialInfectionDistrict("yes");
 		
-		Map<LocalDate, Integer> infectionsPerDay = null;
+		Map<LocalDate, Integer> infectionsPerDay = new TreeMap<LocalDate, Integer>();
 		for (int i = 0;i < 10;i++) {
 			infectionsPerDay.put(LocalDate.of(2020, 3, 5 + i), 10);	
 		}

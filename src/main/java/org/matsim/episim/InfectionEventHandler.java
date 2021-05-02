@@ -32,6 +32,7 @@ import org.matsim.api.core.v01.Id;
 import org.matsim.api.core.v01.IdMap;
 import org.matsim.api.core.v01.Scenario;
 import org.matsim.api.core.v01.events.*;
+import org.matsim.api.core.v01.population.Activity;
 import org.matsim.api.core.v01.population.Person;
 import org.matsim.core.api.internal.HasPersonId;
 import org.matsim.core.config.Config;
@@ -601,7 +602,10 @@ public final class InfectionEventHandler implements Externalizable {
 		for (Person p : scenario.getPopulation().getPersons().values()) {
 
 			if (!personMap.containsKey(p.getId())) {
-				String homeId = (String) p.getAttributes().getAttribute("homeId");
+//				String homeId = (String) p.getAttributes().getAttribute("homeId");
+				Activity act = (Activity ) p.getSelectedPlan().getPlanElements().get(0);
+				String homeId = act.getFacilityId().toString();
+				String actType = act.getType();
 
 				if (homeId != null) {
 
@@ -614,7 +618,7 @@ public final class InfectionEventHandler implements Externalizable {
 						episimPerson.setFirstFacilityId(facilityId, day);
 					}
 
-					episimPerson.addToTrajectory(new EpisimPerson.Activity("home", paramsMap.get("home").params));
+					episimPerson.addToTrajectory(new EpisimPerson.Activity(actType , paramsMap.get(actType ).params));
 
 					facility.addPerson(episimPerson, 0);
 
