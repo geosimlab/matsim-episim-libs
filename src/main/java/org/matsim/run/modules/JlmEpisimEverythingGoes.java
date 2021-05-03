@@ -60,7 +60,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions.csv";
 
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 34;
+	final public static String RUN_ID = "/" + 35;
 	/**
 	 * Activity names of the default params from
 	 * {@link #addDefaultParams(EpisimConfigGroup)}.
@@ -95,7 +95,6 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		episimConfig.getOrAddContainerParams("religion_jewish").setContactIntensity(11.0).setSpacesPerFacility(1);
 		episimConfig.getOrAddContainerParams("religion_arab").setContactIntensity(11.0).setSpacesPerFacility(1);
 		episimConfig.getOrAddContainerParams("home").setContactIntensity(1.0).setSpacesPerFacility(1);
-
 		episimConfig.getOrAddContainerParams("quarantine_home").setContactIntensity(1.0).setSpacesPerFacility(1);
 	}
 
@@ -104,7 +103,6 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		bind(ContactModel.class).to(HouseholdContactModel.class).in(Singleton.class);
 		bind(ProgressionModel.class).to(AgeDependentProgressionModel.class).in(Singleton.class);
 		bind(InitialInfectionHandler.class).to(RandomInitialInfections.class).in(Singleton.class);
-//		bind(InfectionModel.class).to(AgeDependentInfectionModelWithSeasonality.class).in(Singleton.class);
 	}
 
 	@SuppressWarnings("null")
@@ -123,12 +121,11 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		String url = "C:/GeoSimLab/episim_jlm/Input_data/matsim_files/11.output_events-1.0.xml.gz";
 
 		episimConfig.setInputEventsFile(url);
-		// First infection in israel mother fucker
 		episimConfig.setStartDate(LocalDate.of(2020, 3, 5));
 		episimConfig.setInitialInfections(100);
 		episimConfig.setFacilitiesHandling(EpisimConfigGroup.FacilitiesHandling.snz);
 		episimConfig.setSampleSize(1);
-		episimConfig.setCalibrationParameter(0.0000009);
+		episimConfig.setCalibrationParameter(0.000001);
 		episimConfig.setInitialInfectionDistrict("yes");
 		
 		Map<LocalDate, Integer> infectionsPerDay = new TreeMap<LocalDate, Integer>();
@@ -137,24 +134,12 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		}
 		
 		episimConfig.setInfections_pers_per_day(infectionsPerDay);
-		// episimConfig.setOutputEventsFolder("events");
-//		long closingIteration = 3;
 
 		addDefaultParams(episimConfig);
-
-//		episimConfig.setPolicy(FixedPolicy.class, FixedPolicy.config()
-//				.shutdown(closingIteration, DEFAULT_ACTIVITIES)
-//				.restrict(closingIteration, 0.2, "work")
-//				.restrict(closingIteration, 0.3, "other")
-//				.restrict(closingIteration, 0.5, "pt")
-//				.open(closingIteration + 40, DEFAULT_ACTIVITIES)
-//				.build()
-//		);
 		
+		ConfigBuilder jlmRestrictionsPolicy = JlmRestrictions(JLM_RESTRICTIONS);
 		
-//		ConfigBuilder jlmRestrictionsPolicy = JlmRestrictions(JLM_RESTRICTIONS);
-		
-//		episimConfig.setPolicy(FixedPolicy.class, jlmRestrictionsPolicy.build());
+		episimConfig.setPolicy(FixedPolicy.class, jlmRestrictionsPolicy.build());
 		return config;
 	}
 
