@@ -60,7 +60,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions.csv";
 
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 41;
+	final public static String RUN_ID = "/" + 42;
 	/**
 	 * Activity names of the default params from
 	 * {@link #addDefaultParams(EpisimConfigGroup)}.
@@ -119,7 +119,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		config.network().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/11.output_network.xml.gz");
 		config.plans().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/population1.0_district.xml.gz");
 		String url = "C:/GeoSimLab/episim_jlm/Input_data/matsim_files/11.output_events-1.0.xml.gz";
-		LocalDate startDate = LocalDate.of(2020, 2, 18);
+		LocalDate startDate = LocalDate.of(2020, 2, 17);
 		LocalDate date = startDate;
 		episimConfig.setInputEventsFile(url);
 		episimConfig.setStartDate(startDate);
