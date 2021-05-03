@@ -125,7 +125,7 @@ public final class RunEpisim implements Callable<Integer> {
 				.setUnmatchedOptionsArePositionalParams(true)
 				.execute(args);
 		// (the "execute" will run "RunEpisim#call()")
-		TimeUnit.SECONDS.sleep(20);
+//		TimeUnit.SECONDS.sleep(20);
 		try {
 			runCommand("Rscript --vanilla C:/GeoSimLab/episim_jlm/analysis/analysis_first.R " +
 		JlmEpisimEverythingGoes.OUTPUT_FOLDER + JlmEpisimEverythingGoes.RUN_ID + "/", "C:/Program Files/R/R-4.0.4/bin");

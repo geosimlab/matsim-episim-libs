@@ -119,18 +119,20 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		config.network().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/11.output_network.xml.gz");
 		config.plans().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/population1.0_district.xml.gz");
 		String url = "C:/GeoSimLab/episim_jlm/Input_data/matsim_files/11.output_events-1.0.xml.gz";
-
+		LocalDate startDate = LocalDate.of(2020, 3, 5);
+		LocalDate date = startDate;
 		episimConfig.setInputEventsFile(url);
-		episimConfig.setStartDate(LocalDate.of(2020, 3, 5));
+		episimConfig.setStartDate(startDate);
 		episimConfig.setInitialInfections(100);
 		episimConfig.setFacilitiesHandling(EpisimConfigGroup.FacilitiesHandling.snz);
 		episimConfig.setSampleSize(1);
 		episimConfig.setCalibrationParameter(0.000001);
 		episimConfig.setInitialInfectionDistrict("yes");
-		
+//		setting initial infections per day
 		Map<LocalDate, Integer> infectionsPerDay = new TreeMap<LocalDate, Integer>();
 		for (int i = 0;i < 10;i++) {
-			infectionsPerDay.put(LocalDate.of(2020, 3, 5 + i), 10);	
+			infectionsPerDay.put(date, 10);
+			date = date.plusDays(1);
 		}
 		
 		episimConfig.setInfections_pers_per_day(infectionsPerDay);
