@@ -58,7 +58,8 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 
 
 	final public static String JLM_RESTRICTIONS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions.csv";
-
+	final public static String JLM_RESTRICTIONS_GROUPS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions_groups.csv";
+	
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
 	final public static String RUN_ID = "/" + 44;
 	/**
@@ -138,10 +139,14 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		episimConfig.setInfections_pers_per_day(infectionsPerDay);
 
 		addDefaultParams(episimConfig);
-		
-		ConfigBuilder jlmRestrictionsPolicy = JlmRestrictions(JLM_RESTRICTIONS);
-		
-		episimConfig.setPolicy(FixedPolicy.class, jlmRestrictionsPolicy.build());
+//		Can't control multiple values, therefore reduce them to 3. a - lowest, c - highest 
+		double group_a_open_rate = 0;
+		double group_b_open_rate = 1;
+		double group_c_open_rate = 1;
+//		ConfigBuilder jlmRestrictionsPolicy = JlmRestrictions(JLM_RESTRICTIONS);
+		ConfigBuilder jlmRestrictionsGroupsPolicy = JlmRestrictionsGroups(JLM_RESTRICTIONS_GROUPS, group_a_open_rate, group_b_open_rate, group_c_open_rate);
+//		episimConfig.setPolicy(FixedPolicy.class, jlmRestrictionsPolicy.build());
+		episimConfig.setPolicy(FixedPolicy.class, jlmRestrictionsGroupsPolicy.build());
 		return config;
 	}
 
@@ -171,5 +176,43 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		
 		return policy;
 	}
-
+	public ConfigBuilder JlmRestrictionsGroups(String inputResterctions,
+			double group_a_open_rate,double group_b_open_rate,double group_c_open_rate ) {
+		ConfigBuilder policy = FixedPolicy.config();
+		CSVReader csvReader = null;
+		try {
+			csvReader = new CSVReaderBuilder(new FileReader(inputResterctions)).withSkipLines(1).build();
+			String[] row;
+			while ((row = csvReader.readNext()) != null) {
+				LocalDate date = LocalDate.of(Integer.parseInt(row[2]), Integer.parseInt(row[3]),
+						Integer.parseInt(row[4]));
+				double open_rate = 0;
+				switch(row[4]) {
+				case "a":
+					open_rate =group_a_open_rate; 
+					break;
+				case "b":
+					open_rate =group_b_open_rate;
+					break;
+				case "c":
+					open_rate =group_c_open_rate;
+					break;
+				}
+				Restriction fraction = Restriction.of(open_rate);
+				String activity = row[0];
+				policy = policy.restrict(date, fraction, activity);
+				System.out.println(row[0]);					
+			}
+			csvReader.close();
+		} catch (IOException e) {
+			log.error("ERROR: Cannot read restrictions file: " + inputResterctions);
+		} catch (NumberFormatException e) {
+			log.error("ERROR: Check format of restrictions file: " + inputResterctions);
+		} catch (CsvValidationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return policy;
+	}
 }
