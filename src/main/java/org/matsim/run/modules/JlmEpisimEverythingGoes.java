@@ -61,7 +61,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS_GROUPS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions_groups.csv";
 	
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 48;
+	final public static String RUN_ID = "/" + 49;
 	/**
 	 * Activity names of the default params from
 	 * {@link #addDefaultParams(EpisimConfigGroup)}.
@@ -120,7 +120,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		config.network().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/11.output_network.xml.gz");
 		config.plans().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/population1.0_district.xml.gz");
 		String url = "C:/GeoSimLab/episim_jlm/Input_data/matsim_files/11.output_events-1.0.xml.gz";
-		LocalDate startDate = LocalDate.of(2020, 3, 1);
+		LocalDate startDate = LocalDate.of(2020, 3, 5);
 		LocalDate date = startDate;
 		episimConfig.setInputEventsFile(url);
 		episimConfig.setStartDate(startDate);
@@ -140,7 +140,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 
 		addDefaultParams(episimConfig);
 //		Can't control multiple values, therefore reduce them to 3. a - lowest, c - highest 
-		double group_a_open_rate = 0.5;
+		double group_a_open_rate = 0.7;
 		double group_b_open_rate = 1;
 		double group_c_open_rate = 1;
 //		ConfigBuilder jlmRestrictionsPolicy = JlmRestrictions(JLM_RESTRICTIONS);
