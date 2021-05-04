@@ -564,6 +564,8 @@ public final class InfectionEventHandler implements Externalizable {
 	 */
 	private EpisimFacility createHomeFacility(EpisimPerson person) {
 		String homeId = (String) person.getAttributes().getAttribute("homeId");
+//		Activity act = (Activity ) person.getSelectedPlan().getPlanElements().get(0);
+//		String homeId = act.getFacilityId().toString();
 		if (homeId == null)
 			homeId = "home_of_" + person.getPersonId().toString();
 
