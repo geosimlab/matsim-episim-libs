@@ -38,6 +38,7 @@ import org.matsim.api.core.v01.Scenario;
 import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigUtils;
 import org.matsim.episim.EpisimConfigGroup;
+import org.matsim.episim.EpisimConfigGroup.SnapshotSeed;
 import org.matsim.episim.model.AgeDependentProgressionModel;
 import org.matsim.episim.model.ContactModel;
 import org.matsim.episim.model.HouseholdContactModel;
@@ -61,15 +62,11 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS_GROUPS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions_groups.csv";
 	
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 53;
+	final public static String RUN_ID = "/" + 54 + "/" + 1;
 	/**
 	 * Activity names of the default params from
 	 * {@link #addDefaultParams(EpisimConfigGroup)}.
 	 */
-//	does this work?
-	public static final String[] DEFAULT_ACTIVITIES = { "pt", "work", "leisure", "kindergarden", "elementary",
-			"junior_high", "high_school", "university", "other", "fjlm", "tjlm", "home_secular", "home_ultra-orthodox",
-			"home_arab", "home_tjlm", "home_fjlm", "religion_jewish", "religion_arab" };
 
 	/**
 	 * Adds default parameters that should be valid for most scenarios.
@@ -129,6 +126,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		episimConfig.setSampleSize(1);
 		episimConfig.setCalibrationParameter(0.000001);
 		episimConfig.setInitialInfectionDistrict("yes");
+		episimConfig.setSnapshotSeed(SnapshotSeed.reseed);
 //		setting initial infections per day
 		Map<LocalDate, Integer> infectionsPerDay = new TreeMap<LocalDate, Integer>();
 		for (int i = 1;i <= 10;i++) {
@@ -139,14 +137,18 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		episimConfig.setInfections_pers_per_day(infectionsPerDay);
 
 		addDefaultParams(episimConfig);
-//		Can't control multiple values, therefore reduce them to 3. a - lowest, c - highest 
+//		more general restrictions
 		double group_a_open_rate = 0.5;
 		double group_b_open_rate = 1;
-		double group_c_open_rate = 1;
-//		ConfigBuilder jlmRestrictionsPolicy = JlmRestrictions(JLM_RESTRICTIONS);
-		ConfigBuilder jlmRestrictionsGroupsPolicy = JlmRestrictionsGroups(JLM_RESTRICTIONS_GROUPS, group_a_open_rate, group_b_open_rate, group_c_open_rate);
-//		episimConfig.setPolicy(FixedPolicy.class, jlmRestrictionsPolicy.build());
-		episimConfig.setPolicy(FixedPolicy.class, jlmRestrictionsGroupsPolicy.build());
+		String[] group_a_activities = {"kindergarden", "elementary","junior_high", "high_school", 
+				"university","religion_jewish", "religion_arab","leisure"};
+		String[] group_b_activities = {"pt", "work", "other", "fjlm", "tjlm",};
+		LocalDate closingDate = LocalDate.of(2020, 3, 15);
+		episimConfig.setPolicy(FixedPolicy.class, FixedPolicy.config()
+				.restrict(closingDate , group_a_open_rate , group_a_activities)
+				.restrict(closingDate , group_b_open_rate , group_b_activities)
+				.build()
+		);
 		return config;
 	}
 
