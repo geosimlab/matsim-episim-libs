@@ -31,6 +31,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Map;
+import java.util.Random;
 import java.util.TreeMap;
 
 import org.apache.log4j.Logger;
@@ -62,7 +63,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS_GROUPS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions_groups.csv";
 	
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 54 + "/" + 1;
+	final public static String RUN_ID = "/" + 54 + "/" + 4;
 	/**
 	 * Activity names of the default params from
 	 * {@link #addDefaultParams(EpisimConfigGroup)}.
@@ -112,6 +113,8 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 
 		EpisimConfigGroup episimConfig = ConfigUtils.addOrGetModule(config, EpisimConfigGroup.class);
 		config.global().setCoordinateSystem("EPSG:2039");
+		Random rand = new Random();
+		config.global().setRandomSeed(rand.nextLong());
 		config.controler().setOutputDirectory(OUTPUT_FOLDER + RUN_ID + "/");
 		config.facilities().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/facilities1.0.xml.gz");
 		config.network().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/11.output_network.xml.gz");
