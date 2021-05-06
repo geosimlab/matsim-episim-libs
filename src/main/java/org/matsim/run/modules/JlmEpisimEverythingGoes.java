@@ -63,7 +63,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS_GROUPS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions_groups.csv";
 	
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 57 + "/" + 4;
+	final public static String RUN_ID = "/" + 58 + "/" + 1;
 	/**
 	 * Activity names of the default params from
 	 * {@link #addDefaultParams(EpisimConfigGroup)}.
@@ -141,15 +141,18 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 
 		addDefaultParams(episimConfig);
 //		more general restrictions
-		double group_a_open_rate = 0.7;
+		double group_a_open_rate = 0.5;
 		double group_b_open_rate = 1;
 		String[] group_a_activities = {"kindergarden", "elementary","junior_high", "high_school", 
 				"university","religion_jewish", "religion_arab","leisure"};
 		String[] group_b_activities = {"pt", "work", "other", "fjlm", "tjlm",};
 		LocalDate closingDate = LocalDate.of(2020, 3, 15);
+		LocalDate opening_date= LocalDate.of(2020, 5, 5);
 		episimConfig.setPolicy(FixedPolicy.class, FixedPolicy.config()
 				.restrict(closingDate , group_a_open_rate , group_a_activities)
 				.restrict(closingDate , group_b_open_rate , group_b_activities)
+				.restrict(opening_date , 1 , group_a_activities)
+				.restrict(opening_date , 1 , group_b_activities)
 				.build()
 		);
 		return config;
