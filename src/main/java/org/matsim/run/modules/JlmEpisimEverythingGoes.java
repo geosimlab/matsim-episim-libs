@@ -63,7 +63,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS_GROUPS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions_groups.csv";
 	
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 56 + "/" + 1;
+	final public static String RUN_ID = "/" + 57 + "/" + 4;
 	/**
 	 * Activity names of the default params from
 	 * {@link #addDefaultParams(EpisimConfigGroup)}.
@@ -141,7 +141,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 
 		addDefaultParams(episimConfig);
 //		more general restrictions
-		double group_a_open_rate = 0.6;
+		double group_a_open_rate = 0.7;
 		double group_b_open_rate = 1;
 		String[] group_a_activities = {"kindergarden", "elementary","junior_high", "high_school", 
 				"university","religion_jewish", "religion_arab","leisure"};
