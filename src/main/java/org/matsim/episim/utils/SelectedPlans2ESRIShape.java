@@ -176,6 +176,7 @@ public class SelectedPlans2ESRIShape {
 //		Double startTime = act.getStartTime().seconds();
 //		Double endTime = act.getEndTime().seconds();
 		int age = (int) person.getAttributes().getAttribute("age");
+		String subpopulation = person.getAttributes().getAttribute("subpopulation").toString();
 		double rx = MatsimRandom.getRandom().nextDouble() * this.actBlurFactor;
 		double ry = MatsimRandom.getRandom().nextDouble() * this.actBlurFactor;
 		Coord cc = this.network.getLinks().get(act.getLinkId()).getCoord();
@@ -184,7 +185,7 @@ public class SelectedPlans2ESRIShape {
 		try {
 //			return this.actBuilder.buildFeature(null, new Object [] {MGC.coord2Point(c), id, type, linkId, startTime, endTime});
 			if(type.startsWith("home")) {
-				return this.actBuilder.buildFeature(null, new Object [] {MGC.coord2Point(c), id, type, linkId,age});	
+				return this.actBuilder.buildFeature(null, new Object [] {MGC.coord2Point(c), id, type, linkId,age,subpopulation});	
 			}
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
@@ -243,6 +244,7 @@ public class SelectedPlans2ESRIShape {
 //		actBuilder.add("START_TIME", Double.class);
 //		actBuilder.add("END_TIME", Double.class);
 		actBuilder.add("AGE", Double.class);
+		actBuilder.add("SUBPOP", String.class);
 		
 		SimpleFeatureTypeBuilder legBuilder = new SimpleFeatureTypeBuilder();
 		legBuilder.setName("leg");
