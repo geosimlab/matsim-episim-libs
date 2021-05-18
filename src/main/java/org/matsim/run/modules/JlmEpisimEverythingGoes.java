@@ -64,7 +64,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS_GROUPS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions_groups.csv";
 	
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 63 + "/" + 4;
+	final public static String RUN_ID = "/" + 64 + "/" + 1;
 	/**
 	 * Activity names of the default params from
 	 * {@link #addDefaultParams(EpisimConfigGroup)}.
@@ -129,16 +129,16 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		episimConfig.setFacilitiesHandling(EpisimConfigGroup.FacilitiesHandling.snz);
 		episimConfig.setSampleSize(1);
 		episimConfig.setCalibrationParameter(0.000001);
-		episimConfig.setInitialInfectionDistrict("yes");
+		episimConfig.setInitialInfectionDistrict("internal_Ultra-Orthodox");
 		episimConfig.setSnapshotSeed(SnapshotSeed.reseed);
 //		setting initial infections per day
-		Map<LocalDate, Integer> infectionsPerDay = new TreeMap<LocalDate, Integer>();
-		for (int i = 1;i <= 10;i++) {
-			infectionsPerDay.put(date, 10);
-			date = startDate.plusDays(i);
-		}
-		
-		episimConfig.setInfections_pers_per_day(infectionsPerDay);
+//		Map<LocalDate, Integer> infectionsPerDay = new TreeMap<LocalDate, Integer>();
+//		for (int i = 1;i <= 10;i++) {
+//			infectionsPerDay.put(date, 10);
+//			date = startDate.plusDays(i);
+//		}
+//		
+//		episimConfig.setInfections_pers_per_day(infectionsPerDay);
 
 		addDefaultParams(episimConfig);
 //		more general restrictions
