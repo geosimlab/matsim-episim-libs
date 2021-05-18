@@ -64,7 +64,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS_GROUPS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions_groups.csv";
 	
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 64 + "/" + 1;
+	final public static String RUN_ID = "/" + 65 + "/" + 1;
 	/**
 	 * Activity names of the default params from
 	 * {@link #addDefaultParams(EpisimConfigGroup)}.
@@ -121,14 +121,14 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		config.network().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/11.output_network.xml.gz");
 		config.plans().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/population1.0_district.xml.gz");
 		String url = "C:/GeoSimLab/episim_jlm/Input_data/matsim_files/11.output_events-1.0.xml.gz";
-		LocalDate startDate = LocalDate.of(2020, 2, 15);
+		LocalDate startDate = LocalDate.of(2020, 2, 20);
 		LocalDate date = startDate;
 		episimConfig.setInputEventsFile(url);
 		episimConfig.setStartDate(startDate);
 		episimConfig.setInitialInfections(100);
 		episimConfig.setFacilitiesHandling(EpisimConfigGroup.FacilitiesHandling.snz);
 		episimConfig.setSampleSize(1);
-		episimConfig.setCalibrationParameter(0.000001);
+		episimConfig.setCalibrationParameter(0.0000015);
 		episimConfig.setInitialInfectionDistrict("internal_Ultra-Orthodox");
 		episimConfig.setSnapshotSeed(SnapshotSeed.reseed);
 //		setting initial infections per day
