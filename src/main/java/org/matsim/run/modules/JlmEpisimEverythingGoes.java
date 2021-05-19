@@ -64,7 +64,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS_GROUPS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions_groups.csv";
 	
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 72 + "/" + 1;
+	final public static String RUN_ID = "/" + 73 + "/" + 1;
 	/**
 	 * Activity names of the default params from
 	 * {@link #addDefaultParams(EpisimConfigGroup)}.
@@ -146,19 +146,22 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		String[] group_a_activities = {"kindergarden", "elementary","junior_high", "high_school", 
 				"university","religion_jewish", "religion_arab","leisure"};
 		String[] group_b_activities = {"pt", "work", "other", "fjlm", "tjlm",};
+//		first clsure
 		LocalDate closingDate = LocalDate.of(2020, 3, 15);
 		double group_a_open_rate_closing_date = 0.3;
 		double group_b_open_rate_closing_date = 1;
+//		end of first closure
 		LocalDate openingDate= LocalDate.of(2020, 5, 5);
 		double group_a_open_rate_opening_date = 0.5;
 		double group_b_open_rate_opening_date = 1;
+//		out of school
 		LocalDate closingDate2 = LocalDate.of(2020, 6, 19);
 		double group_a_open_rate_closing_date2 = 0.8;
 		double group_b_open_rate_closing_date2 = 1;
 		LocalDate closingDate3 = LocalDate.of(2020, 7, 6);
 		double group_a_open_rate_closing_date3 = 0.5;
 		double group_b_open_rate_closing_date3 = 1;
-		LocalDate closingDate4 = LocalDate.of(2020, 9, 15);
+		LocalDate closingDate4 = LocalDate.of(2020, 9, 28);
 		double group_a_open_rate_closing_date4 = 0.3;
 		double group_b_open_rate_closing_date4 = 1;
 		episimConfig.setPolicy(FixedPolicy.class, FixedPolicy.config()
