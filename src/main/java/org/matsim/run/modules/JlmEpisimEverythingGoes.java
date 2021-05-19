@@ -64,7 +64,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS_GROUPS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions_groups.csv";
 	
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 75 + "/" + 1;
+	final public static String RUN_ID = "/" + 76 + "/" + 1;
 	final public static int iterations = 300;
 	/**
 	 * Activity names of the default params from
@@ -157,7 +157,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		double group_a_open_rate_opening_date = 0.5;
 		double group_b_open_rate_opening_date = 1;
 //		out of school
-		LocalDate closingDate2 = LocalDate.of(2020, 6, 19);
+		LocalDate closingDate2 = LocalDate.of(2020, 6, 21);
 		double group_a_open_rate_closing_date2 = 0.8;
 		double group_b_open_rate_closing_date2 = 1;
 		LocalDate closingDate3 = LocalDate.of(2020, 7, 6);
@@ -169,6 +169,9 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		LocalDate closingDate5 = LocalDate.of(2020, 9, 28);
 		double group_a_open_rate_closing_date5 = 0.3;
 		double group_b_open_rate_closing_date5 = 1;
+		LocalDate closingDate6 = LocalDate.of(2020, 10, 18);
+		double group_a_open_rate_closing_date6 = 0.5;
+		double group_b_open_rate_closing_date6 = 1;
 		episimConfig.setPolicy(FixedPolicy.class, FixedPolicy.config()
 				.restrict(closingDate , group_a_open_rate_closing_date , group_a_activities)
 				.restrict(closingDate , group_b_open_rate_closing_date , group_b_activities)
@@ -182,6 +185,8 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 				.restrict(closingDate4 , group_b_open_rate_closing_date4 , group_b_activities)
 				.restrict(closingDate5 , group_a_open_rate_closing_date5 , group_a_activities)
 				.restrict(closingDate5 , group_b_open_rate_closing_date5 , group_b_activities)
+				.restrict(closingDate6 , group_a_open_rate_closing_date6 , group_a_activities)
+				.restrict(closingDate6 , group_b_open_rate_closing_date6 , group_b_activities)
 				.build()
 		);
 		return config;
