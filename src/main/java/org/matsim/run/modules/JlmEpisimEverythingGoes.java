@@ -64,7 +64,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS_GROUPS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions_groups.csv";
 	
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 67 + "/" + 1;
+	final public static String RUN_ID = "/" + 68 + "/" + 4;
 	/**
 	 * Activity names of the default params from
 	 * {@link #addDefaultParams(EpisimConfigGroup)}.
@@ -121,7 +121,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		config.network().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/11.output_network.xml.gz");
 		config.plans().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/population1.0_district_subpop.xml.gz");
 		String url = "C:/GeoSimLab/episim_jlm/Input_data/matsim_files/11.output_events-1.0.xml.gz";
-		LocalDate startDate = LocalDate.of(2020, 2, 15);
+		LocalDate startDate = LocalDate.of(2020, 2, 20);
 		LocalDate date = startDate;
 		episimConfig.setInputEventsFile(url);
 		episimConfig.setStartDate(startDate);
@@ -152,7 +152,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		LocalDate openingDate= LocalDate.of(2020, 5, 5);
 		double group_a_open_rate_opening_date = 0.6;
 		double group_b_open_rate_opening_date = 1;
-		LocalDate closingDate2 = LocalDate.of(2020, 19, 6);
+		LocalDate closingDate2 = LocalDate.of(2020, 6, 19);
 		double group_a_open_rate_closing_date2 = 0.9;
 		double group_b_open_rate_closing_date2 = 1;
 		LocalDate closingDate3 = LocalDate.of(2020, 7, 6);
