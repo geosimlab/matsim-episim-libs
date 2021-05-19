@@ -64,7 +64,8 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS_GROUPS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions_groups.csv";
 	
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 74 + "/" + 1;
+	final public static String RUN_ID = "/" + 75 + "/" + 1;
+	final public static int iterations = 300;
 	/**
 	 * Activity names of the default params from
 	 * {@link #addDefaultParams(EpisimConfigGroup)}.
@@ -131,7 +132,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		episimConfig.setCalibrationParameter(0.0000015);
 		episimConfig.setInitialInfectionDistrict("internal_Ultra-Orthodox");
 		episimConfig.setSnapshotSeed(SnapshotSeed.reseed);
-		episimConfig.setSnapshotInterval(1);
+		episimConfig.setSnapshotInterval(iterations);
 //		setting initial infections per day
 //		Map<LocalDate, Integer> infectionsPerDay = new TreeMap<LocalDate, Integer>();
 //		for (int i = 1;i <= 10;i++) {
@@ -162,9 +163,12 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		LocalDate closingDate3 = LocalDate.of(2020, 7, 6);
 		double group_a_open_rate_closing_date3 = 0.5;
 		double group_b_open_rate_closing_date3 = 1;
-		LocalDate closingDate4 = LocalDate.of(2020, 9, 28);
-		double group_a_open_rate_closing_date4 = 0.3;
+		LocalDate closingDate4 = LocalDate.of(2020, 8, 23);
+		double group_a_open_rate_closing_date4 = 0.8;
 		double group_b_open_rate_closing_date4 = 1;
+		LocalDate closingDate5 = LocalDate.of(2020, 9, 28);
+		double group_a_open_rate_closing_date5 = 0.3;
+		double group_b_open_rate_closing_date5 = 1;
 		episimConfig.setPolicy(FixedPolicy.class, FixedPolicy.config()
 				.restrict(closingDate , group_a_open_rate_closing_date , group_a_activities)
 				.restrict(closingDate , group_b_open_rate_closing_date , group_b_activities)
@@ -176,6 +180,8 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 				.restrict(closingDate3 , group_b_open_rate_closing_date3 , group_b_activities)
 				.restrict(closingDate4 , group_a_open_rate_closing_date4 , group_a_activities)
 				.restrict(closingDate4 , group_b_open_rate_closing_date4 , group_b_activities)
+				.restrict(closingDate5 , group_a_open_rate_closing_date5 , group_a_activities)
+				.restrict(closingDate5 , group_b_open_rate_closing_date5 , group_b_activities)
 				.build()
 		);
 		return config;
