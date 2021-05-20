@@ -43,6 +43,7 @@ import org.matsim.episim.EpisimConfigGroup.SnapshotSeed;
 import org.matsim.episim.model.AgeDependentProgressionModel;
 import org.matsim.episim.model.ContactModel;
 import org.matsim.episim.model.HouseholdContactModel;
+import org.matsim.episim.model.HouseholdSecularContactModel;
 import org.matsim.episim.model.HouseholdUltraOrthodoxContactModel;
 import org.matsim.episim.model.InitialInfectionHandler;
 import org.matsim.episim.model.ProgressionModel;
@@ -64,7 +65,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS_GROUPS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions_groups.csv";
 	
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 76 + "/" + 1;
+	final public static String RUN_ID = "/" + 77 + "/" + 1;
 	final public static int iterations = 300;
 	/**
 	 * Activity names of the default params from
@@ -101,7 +102,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 
 	@Override
 	protected void configure() {
-		bind(ContactModel.class).to(HouseholdUltraOrthodoxContactModel.class).in(Singleton.class);
+		bind(ContactModel.class).to(HouseholdSecularContactModel.class).in(Singleton.class);
 		bind(ProgressionModel.class).to(AgeDependentProgressionModel.class).in(Singleton.class);
 		bind(InitialInfectionHandler.class).to(RandomInitialInfections.class).in(Singleton.class);
 	}
@@ -130,7 +131,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		episimConfig.setFacilitiesHandling(EpisimConfigGroup.FacilitiesHandling.snz);
 		episimConfig.setSampleSize(1);
 		episimConfig.setCalibrationParameter(0.0000015);
-		episimConfig.setInitialInfectionDistrict("internal_Ultra-Orthodox");
+		episimConfig.setInitialInfectionDistrict("internal_Secular");
 		episimConfig.setSnapshotSeed(SnapshotSeed.reseed);
 		episimConfig.setSnapshotInterval(iterations);
 //		setting initial infections per day
