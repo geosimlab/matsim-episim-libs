@@ -35,6 +35,8 @@ import org.matsim.core.config.ConfigUtils;
 import org.matsim.episim.*;
 import org.matsim.episim.reporting.AsyncEpisimWriter;
 import org.matsim.episim.reporting.EpisimWriter;
+import org.matsim.run.modules.JlmEpisimEverythingGoes;
+
 import picocli.CommandLine;
 
 import javax.annotation.Nullable;
@@ -70,7 +72,7 @@ public class RunParallel<T> implements Callable<Integer> {
 
 	private static final Logger log = LogManager.getLogger(RunParallel.class);
 
-	@CommandLine.Option(names = "--output", defaultValue = "${env:EPISIM_OUTPUT:-output}")
+	@CommandLine.Option(names = "--output", defaultValue = JlmEpisimEverythingGoes.OUTPUT_FOLDER + JlmEpisimEverythingGoes.RUN_ID)
 	private Path output;
 
 	public static final String OPTION_SETUP = "--setup";
@@ -99,7 +101,7 @@ public class RunParallel<T> implements Callable<Integer> {
 	private int maxJobs;
 
 	public static final String OPTION_ITERATIONS = "--iterations";
-	@CommandLine.Option(names = OPTION_ITERATIONS, description = "Maximum number of days to simulate.", defaultValue = "360")
+	@CommandLine.Option(names = OPTION_ITERATIONS, description = "Maximum number of days to simulate.", defaultValue = ""+JlmEpisimEverythingGoes.iterations)
 	private int maxIterations;
 
 	@CommandLine.Option(names = "--no-reuse", defaultValue = "false", description = "Don't reuse the scenario and events for the runs.")
