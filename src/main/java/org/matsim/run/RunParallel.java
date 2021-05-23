@@ -215,13 +215,7 @@ public class RunParallel<T> implements Callable<Integer> {
 						log.error("Task {} failed", outputPath, t);
 						return null;
 					}));
-			try {
-				runCommand("Rscript --vanilla C:/GeoSimLab/episim_jlm/analysis/events_to_table.R " +
-						outputPath, "C:/Program Files/R/R-4.0.4/bin");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
 		}
 
 		if (writeMetadata) {
@@ -316,31 +310,5 @@ public class RunParallel<T> implements Callable<Integer> {
 			log.info("Task finished: {}", this.module.config.controler().getOutputDirectory());
 		}
 	}
-	public static void runCommand(String command, String dirStr) throws IOException {
-		System.out.println("*********************************************************");
-		System.out.println("command:" + command);
-		String[] commands = { "cmd", "/C", command };// the string is on order to handle with pipes,
-		// https://stackoverflow.com/questions/5928225/how-to-make-pipes-work-with-runtime-exec
-		File dir = new File(dirStr);
-		Runtime rt = Runtime.getRuntime();
-		Process proc = rt.exec(commands, null, dir);
-
-		BufferedReader stdInput = new BufferedReader(new InputStreamReader(proc.getInputStream()));
-
-		BufferedReader stdError = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
-
-		// Read the output from the command
-		System.out.println("Here is the standard output of the command:\n");
-		String s = null;
-		while ((s = stdInput.readLine()) != null) {
-			System.out.println(s);
-		}
-
-		// Read any errors from the attempted command
-		System.out.println("Here is the standard error of the command (if any):\n");
-		while ((s = stdError.readLine()) != null) {
-			System.out.println("\u001B[31m" + s);
-
-		}
-	}
+	
 }

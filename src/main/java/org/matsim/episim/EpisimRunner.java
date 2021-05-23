@@ -33,8 +33,11 @@ import org.matsim.core.controler.ControlerUtils;
 import org.matsim.core.gbl.Gbl;
 import org.matsim.episim.model.ProgressionModel;
 
+import java.io.BufferedReader;
 import java.io.Externalizable;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.nio.file.Files;
@@ -121,7 +124,13 @@ public final class EpisimRunner {
 				break;
 
 		}
-
+		try {
+			runCommand("Rscript --vanilla C:/GeoSimLab/episim_jlm/analysis/events_to_table.R " +
+					output+"/events/", "C:/Program Files/R/R-4.0.4/bin");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		reporting.close();
 	}
 
@@ -274,6 +283,33 @@ public final class EpisimRunner {
 		obj.writeExternal(oos);
 		oos.flush();
 		archive.closeArchiveEntry();
+	}
+	public static void runCommand(String command, String dirStr) throws IOException {
+		System.out.println("*********************************************************");
+		System.out.println("command:" + command);
+		String[] commands = { "cmd", "/C", command };// the string is on order to handle with pipes,
+		// https://stackoverflow.com/questions/5928225/how-to-make-pipes-work-with-runtime-exec
+		File dir = new File(dirStr);
+		Runtime rt = Runtime.getRuntime();
+		Process proc = rt.exec(commands, null, dir);
+
+		BufferedReader stdInput = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+
+		BufferedReader stdError = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
+
+		// Read the output from the command
+		System.out.println("Here is the standard output of the command:\n");
+		String s = null;
+		while ((s = stdInput.readLine()) != null) {
+			System.out.println(s);
+		}
+
+		// Read any errors from the attempted command
+		System.out.println("Here is the standard error of the command (if any):\n");
+		while ((s = stdError.readLine()) != null) {
+			System.out.println("\u001B[31m" + s);
+
+		}
 	}
 
 }
