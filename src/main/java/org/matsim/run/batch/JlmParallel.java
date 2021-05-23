@@ -49,17 +49,6 @@ public class JlmParallel implements BatchRun<JlmParallel.Params> {
 		@GenerateSeeds(4)
 		public long seed;
 
-//		@StringParameter({"current"})
-//		public String variant = "current";
-
-//		@StringParameter({"no", "yes"})
-//		public String holidays;
-
-//		@StringParameter({"no", "0-6", "23-6", "22-6", "21-6", "20-6", "19-6", "0-24"})
-//		public String curfew;
-
-//		@IntParameter({200, Integer.MAX_VALUE})
-//		int tracingCapacity;
 
 	}
 
