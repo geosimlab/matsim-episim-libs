@@ -127,8 +127,8 @@ public final class RunEpisim implements Callable<Integer> {
 		// (the "execute" will run "RunEpisim#call()")
 //		TimeUnit.SECONDS.sleep(20);
 		try {
-			runCommand("Rscript --vanilla C:/GeoSimLab/episim_jlm/analysis/analysis_first.R " +
-		JlmEpisimEverythingGoes.OUTPUT_FOLDER + JlmEpisimEverythingGoes.RUN_ID + "/", "C:/Program Files/R/R-4.0.4/bin");
+			runCommand("Rscript --vanilla C:/GeoSimLab/episim_jlm/analysis/events_to_table.R " +
+					JlmEpisimEverythingGoes.OUTPUT_FOLDER + JlmEpisimEverythingGoes.RUN_ID + "/"+"/events/", "C:/Program Files/R/R-4.0.4/bin");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
