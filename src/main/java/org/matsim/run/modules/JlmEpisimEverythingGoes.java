@@ -65,7 +65,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS_GROUPS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions_groups.csv";
 	
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 78 + "/" + 8;
+	final public static String RUN_ID = "/" + 79 + "/" + 1;
 	final public static int iterations = 300;
 	/**
 	 * Activity names of the default params from
@@ -155,7 +155,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		double group_b_open_rate_closing_date = 1;
 //		end of first closure
 		LocalDate openingDate= LocalDate.of(2020, 5, 5);
-		double group_a_open_rate_opening_date = 0.5;
+		double group_a_open_rate_opening_date = 0.4;
 		double group_b_open_rate_opening_date = 1;
 //		out of school
 		LocalDate closingDate2 = LocalDate.of(2020, 6, 21);
