@@ -44,6 +44,7 @@ import org.matsim.episim.model.AgeDependentProgressionModel;
 import org.matsim.episim.model.ContactModel;
 import org.matsim.episim.model.HouseholdContactModel;
 import org.matsim.episim.model.HouseholdSecularContactModel;
+import org.matsim.episim.model.HouseholdSecularUltraContactModel;
 import org.matsim.episim.model.HouseholdUltraOrthodoxContactModel;
 import org.matsim.episim.model.InitialInfectionHandler;
 import org.matsim.episim.model.ProgressionModel;
@@ -65,7 +66,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS_GROUPS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions_groups.csv";
 	
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 79 + "/" + 1;
+	final public static String RUN_ID = "/" + 80 + "/" + 1;
 	final public static int iterations = 300;
 	/**
 	 * Activity names of the default params from
@@ -102,7 +103,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 
 	@Override
 	protected void configure() {
-		bind(ContactModel.class).to(HouseholdSecularContactModel.class).in(Singleton.class);
+		bind(ContactModel.class).to(HouseholdSecularUltraContactModel.class).in(Singleton.class);
 		bind(ProgressionModel.class).to(AgeDependentProgressionModel.class).in(Singleton.class);
 		bind(InitialInfectionHandler.class).to(RandomInitialInfections.class).in(Singleton.class);
 	}
@@ -119,10 +120,10 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		Random rand = new Random();
 		config.global().setRandomSeed(rand.nextLong());
 		config.controler().setOutputDirectory(OUTPUT_FOLDER + RUN_ID + "/");
-		config.facilities().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/facilities1.0.xml.gz");
+		config.facilities().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/facilities1.0.fixed.xml.gz");
 		config.network().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/11.output_network.xml.gz");
 		config.plans().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/population1.0_district_subpop.xml.gz");
-		String url = "C:/GeoSimLab/episim_jlm/Input_data/matsim_files/11.output_events-1.0.xml.gz";
+		String url = "C:/GeoSimLab/episim_jlm/Input_data/matsim_files/test.xml";
 		LocalDate startDate = LocalDate.of(2020, 2, 25);
 		LocalDate date = startDate;
 		episimConfig.setInputEventsFile(url);
@@ -146,12 +147,19 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		addDefaultParams(episimConfig);
 //		more general restrictions
 		
-		String[] group_a_activities = {"kindergarden", "elementary","junior_high", "high_school", 
-				"university","religion_jewish", "religion_arab","leisure"};
-		String[] group_b_activities = {"pt", "work", "other", "fjlm", "tjlm",};
+		String[] group_arabs_a_activities = {"kindergarden_internal_arab", "elementary_internal_arab","junior_high_internal_arab", "high_school_internal_arab", 
+				"university_internal_arab","religion_jewish_internal_arab", "religion_arab_internal_arab","leisure_internal_arab"};
+		String[] group_arabs_b_activities = {"pt", "work_internal_arab", "other_internal_arab", "fjlm_internal_arab", "tjlm_internal_arab",};
+		String[] group_secular_a_activities = {"kindergarden_internal_Secular", "elementary_internal_Secular","junior_high_internal_Secular", "high_school_internal_Secular", 
+				"university_internal_Secular","religion_jewish_internal_Secular", "religion_arab_internal_Secular","leisure_internal_Secular"};
+		String[] group_secular_b_activities = {"pt", "work_internal_Secular", "other_internal_Secular", "fjlm_internal_Secular", "tjlm_internal_Secular",};
+		String[] group_ultra_a_activities = {"kindergarden_internal_Ultra-Orthodox", "elementary_internal_Ultra-Orthodox","junior_high_internal_Ultra-Orthodox", "high_school_internal_Ultra-Orthodox", 
+				"university_internal_Ultra-Orthodox","religion_jewish_internal_Ultra-Orthodox", "religion_arab_internal_Ultra-Orthodox","leisure_internal_Ultra-Orthodox"};
+		String[] group_ultra_b_activities = {"pt", "work_internal_Ultra-Orthodox", "other_internal_Ultra-Orthodox", "fjlm_internal_Ultra-Orthodox", "tjlm_internal_Ultra-Orthodox",};
 //		first clsure
 		LocalDate closingDate = LocalDate.of(2020, 3, 15);
-		double group_a_open_rate_closing_date = 0.3;
+		double group_secular_a_open_rate_closing_date = 0;
+		double group_ultra_open_rate_closing_date = 0.3;
 		double group_b_open_rate_closing_date = 1;
 //		end of first closure
 		LocalDate openingDate= LocalDate.of(2020, 5, 5);
@@ -174,20 +182,34 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		double group_a_open_rate_closing_date6 = 0.5;
 		double group_b_open_rate_closing_date6 = 1;
 		episimConfig.setPolicy(FixedPolicy.class, FixedPolicy.config()
-				.restrict(closingDate , group_a_open_rate_closing_date , group_a_activities)
-				.restrict(closingDate , group_b_open_rate_closing_date , group_b_activities)
-				.restrict(openingDate , group_a_open_rate_opening_date , group_a_activities)
-				.restrict(openingDate , group_b_open_rate_opening_date , group_b_activities)
-				.restrict(closingDate2 , group_a_open_rate_closing_date2 , group_a_activities)
-				.restrict(closingDate2 , group_b_open_rate_closing_date2 , group_b_activities)
-				.restrict(closingDate3 , group_a_open_rate_closing_date3 , group_a_activities)
-				.restrict(closingDate3 , group_b_open_rate_closing_date3 , group_b_activities)
-				.restrict(closingDate4 , group_a_open_rate_closing_date4 , group_a_activities)
-				.restrict(closingDate4 , group_b_open_rate_closing_date4 , group_b_activities)
-				.restrict(closingDate5 , group_a_open_rate_closing_date5 , group_a_activities)
-				.restrict(closingDate5 , group_b_open_rate_closing_date5 , group_b_activities)
-				.restrict(closingDate6 , group_a_open_rate_closing_date6 , group_a_activities)
-				.restrict(closingDate6 , group_b_open_rate_closing_date6 , group_b_activities)
+				.restrict(closingDate , group_secular_a_open_rate_closing_date , group_secular_a_activities)
+				.restrict(closingDate , group_b_open_rate_closing_date , group_secular_b_activities)
+				.restrict(openingDate , group_a_open_rate_opening_date , group_secular_a_activities)
+				.restrict(openingDate , group_b_open_rate_opening_date , group_secular_b_activities)
+				.restrict(closingDate2 , group_a_open_rate_closing_date2 , group_secular_a_activities)
+				.restrict(closingDate2 , group_b_open_rate_closing_date2 , group_secular_b_activities)
+				.restrict(closingDate3 , group_a_open_rate_closing_date3 , group_secular_a_activities)
+				.restrict(closingDate3 , group_b_open_rate_closing_date3 , group_secular_b_activities)
+				.restrict(closingDate4 , group_a_open_rate_closing_date4 , group_secular_a_activities)
+				.restrict(closingDate4 , group_b_open_rate_closing_date4 , group_secular_b_activities)
+				.restrict(closingDate5 , group_a_open_rate_closing_date5 , group_secular_a_activities)
+				.restrict(closingDate5 , group_b_open_rate_closing_date5 , group_secular_b_activities)
+				.restrict(closingDate6 , group_a_open_rate_closing_date6 , group_secular_a_activities)
+				.restrict(closingDate6 , group_b_open_rate_closing_date6 , group_secular_b_activities)
+				.restrict(closingDate , group_ultra_open_rate_closing_date , group_ultra_a_activities)
+				.restrict(closingDate , group_b_open_rate_closing_date , group_ultra_b_activities)
+				.restrict(openingDate , group_a_open_rate_opening_date , group_ultra_a_activities)
+				.restrict(openingDate , group_b_open_rate_opening_date , group_ultra_b_activities)
+				.restrict(closingDate2 , group_a_open_rate_closing_date2 , group_ultra_a_activities)
+				.restrict(closingDate2 , group_b_open_rate_closing_date2 , group_ultra_b_activities)
+				.restrict(closingDate3 , group_a_open_rate_closing_date3 , group_ultra_a_activities)
+				.restrict(closingDate3 , group_b_open_rate_closing_date3 , group_ultra_b_activities)
+				.restrict(closingDate4 , group_a_open_rate_closing_date4 , group_ultra_a_activities)
+				.restrict(closingDate4 , group_b_open_rate_closing_date4 , group_ultra_b_activities)
+				.restrict(closingDate5 , group_a_open_rate_closing_date5 , group_ultra_a_activities)
+				.restrict(closingDate5 , group_b_open_rate_closing_date5 , group_ultra_b_activities)
+				.restrict(closingDate6 , group_a_open_rate_closing_date6 , group_ultra_a_activities)
+				.restrict(closingDate6 , group_b_open_rate_closing_date6 , group_ultra_b_activities)
 				.build()
 		);
 		return config;
