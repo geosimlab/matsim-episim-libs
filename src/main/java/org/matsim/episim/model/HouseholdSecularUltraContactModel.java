@@ -108,7 +108,7 @@ public final class HouseholdSecularUltraContactModel extends AbstractContactMode
 		boolean is2secular = person2.getAttributes().getAttribute("subpopulation").toString().equals("internal_Secular");
 		boolean is1orthodox = person1.getAttributes().getAttribute("subpopulation").toString().equals("internal_Ultra-Orthodox") ;
 		boolean is2orthodox = person2.getAttributes().getAttribute("subpopulation").toString().equals("internal_Ultra-Orthodox");
-		if(!is1orthodox || !is2orthodox||!is1secular||!is2secular) {
+		if(!(is1orthodox && is1secular)|| !(is2orthodox && is2secular)) {
 			return false;
 		}
 		return (hasDiseaseStatusRelevantForInfectionDynamics(person1) && hasDiseaseStatusRelevantForInfectionDynamics(person2));
