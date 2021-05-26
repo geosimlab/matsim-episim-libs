@@ -90,6 +90,40 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		episimConfig.getOrAddContainerParams("other").setContactIntensity(0.88).setSpacesPerFacility(spaces);
 		episimConfig.getOrAddContainerParams("tjlm").setContactIntensity(1.47).setSpacesPerFacility(spaces);
 		episimConfig.getOrAddContainerParams("fjlm").setContactIntensity(1.47).setSpacesPerFacility(spaces);
+//		_internal_arab
+		episimConfig.getOrAddContainerParams("work_internal_arab").setContactIntensity(1.47).setSpacesPerFacility(spaces);
+		episimConfig.getOrAddContainerParams("leisure_internal_arab").setContactIntensity(9.24).setSpacesPerFacility(spaces);
+		episimConfig.getOrAddContainerParams("kindergarden_internal_arab").setContactIntensity(11.0).setSpacesPerFacility(spaces);
+		episimConfig.getOrAddContainerParams("elementary_internal_arab").setContactIntensity(11.0).setSpacesPerFacility(spaces);
+		episimConfig.getOrAddContainerParams("junior_high_internal_arab").setContactIntensity(11.0).setSpacesPerFacility(spaces);
+		episimConfig.getOrAddContainerParams("high_school_internal_arab").setContactIntensity(11.).setSpacesPerFacility(spaces);
+		episimConfig.getOrAddContainerParams("university_internal_arab").setContactIntensity(5.5).setSpacesPerFacility(spaces);
+		episimConfig.getOrAddContainerParams("other_internal_arab").setContactIntensity(0.88).setSpacesPerFacility(spaces);
+		episimConfig.getOrAddContainerParams("tjlm_internal_arab").setContactIntensity(1.47).setSpacesPerFacility(spaces);
+		episimConfig.getOrAddContainerParams("fjlm_internal_arab").setContactIntensity(1.47).setSpacesPerFacility(spaces);
+//		_internal_Secular
+		episimConfig.getOrAddContainerParams("work_internal_Secular").setContactIntensity(1.47).setSpacesPerFacility(spaces);
+		episimConfig.getOrAddContainerParams("leisure_internal_Secular").setContactIntensity(9.24).setSpacesPerFacility(spaces);
+		episimConfig.getOrAddContainerParams("kindergarden_internal_Secular").setContactIntensity(11.0).setSpacesPerFacility(spaces);
+		episimConfig.getOrAddContainerParams("elementary_internal_Secular").setContactIntensity(11.0).setSpacesPerFacility(spaces);
+		episimConfig.getOrAddContainerParams("junior_high_internal_Secular").setContactIntensity(11.0).setSpacesPerFacility(spaces);
+		episimConfig.getOrAddContainerParams("high_school_internal_Secular").setContactIntensity(11.).setSpacesPerFacility(spaces);
+		episimConfig.getOrAddContainerParams("university_internal_Secular").setContactIntensity(5.5).setSpacesPerFacility(spaces);
+		episimConfig.getOrAddContainerParams("other_internal_Secular").setContactIntensity(0.88).setSpacesPerFacility(spaces);
+		episimConfig.getOrAddContainerParams("tjlm_internal_Secular").setContactIntensity(1.47).setSpacesPerFacility(spaces);
+		episimConfig.getOrAddContainerParams("fjlm_internal_Secular").setContactIntensity(1.47).setSpacesPerFacility(spaces);
+//		_internal_Ultra-Orthodox
+		episimConfig.getOrAddContainerParams("work_internal_Ultra-Orthodox").setContactIntensity(1.47).setSpacesPerFacility(spaces);
+		episimConfig.getOrAddContainerParams("leisure_internal_Ultra-Orthodox").setContactIntensity(9.24).setSpacesPerFacility(spaces);
+		episimConfig.getOrAddContainerParams("kindergarden_internal_Ultra-Orthodox").setContactIntensity(11.0).setSpacesPerFacility(spaces);
+		episimConfig.getOrAddContainerParams("elementary_internal_Ultra-Orthodox").setContactIntensity(11.0).setSpacesPerFacility(spaces);
+		episimConfig.getOrAddContainerParams("junior_high_internal_Ultra-Orthodox").setContactIntensity(11.0).setSpacesPerFacility(spaces);
+		episimConfig.getOrAddContainerParams("high_school_internal_Ultra-Orthodox").setContactIntensity(11.).setSpacesPerFacility(spaces);
+		episimConfig.getOrAddContainerParams("university_internal_Ultra-Orthodox").setContactIntensity(5.5).setSpacesPerFacility(spaces);
+		episimConfig.getOrAddContainerParams("other_internal_Ultra-Orthodox").setContactIntensity(0.88).setSpacesPerFacility(spaces);
+		episimConfig.getOrAddContainerParams("tjlm_internal_Ultra-Orthodox").setContactIntensity(1.47).setSpacesPerFacility(spaces);
+		episimConfig.getOrAddContainerParams("fjlm_internal_Ultra-Orthodox").setContactIntensity(1.47).setSpacesPerFacility(spaces);
+		
 		episimConfig.getOrAddContainerParams("home_secular").setContactIntensity(1.0).setSpacesPerFacility(1);
 		episimConfig.getOrAddContainerParams("home_ultra-orthodox").setContactIntensity(1.0).setSpacesPerFacility(1);
 		episimConfig.getOrAddContainerParams("home_arab").setContactIntensity(1.0).setSpacesPerFacility(1);
@@ -97,6 +131,16 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		episimConfig.getOrAddContainerParams("home_fjlm").setContactIntensity(1.0).setSpacesPerFacility(1);
 		episimConfig.getOrAddContainerParams("religion_jewish").setContactIntensity(11.0).setSpacesPerFacility(1);
 		episimConfig.getOrAddContainerParams("religion_arab").setContactIntensity(11.0).setSpacesPerFacility(1);
+//		_internal_arab
+		episimConfig.getOrAddContainerParams("religion_jewish_internal_arab").setContactIntensity(11.0).setSpacesPerFacility(1);
+		episimConfig.getOrAddContainerParams("religion_arab_internal_arab").setContactIntensity(11.0).setSpacesPerFacility(1);
+//		_internal_Secular
+		episimConfig.getOrAddContainerParams("religion_jewish_internal_Secular").setContactIntensity(11.0).setSpacesPerFacility(1);
+		episimConfig.getOrAddContainerParams("religion_arab_internal_Secular").setContactIntensity(11.0).setSpacesPerFacility(1);
+//		_internal_Ultra-Orthodox
+		episimConfig.getOrAddContainerParams("religion_jewish_internal_Ultra-Orthodox").setContactIntensity(11.0).setSpacesPerFacility(1);
+		episimConfig.getOrAddContainerParams("religion_arab_internal_Ultra-Orthodox").setContactIntensity(11.0).setSpacesPerFacility(1);
+		
 		episimConfig.getOrAddContainerParams("home").setContactIntensity(1.0).setSpacesPerFacility(1);
 		episimConfig.getOrAddContainerParams("quarantine_home").setContactIntensity(1.0).setSpacesPerFacility(1);
 	}
