@@ -66,7 +66,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS_GROUPS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions_groups.csv";
 	
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 91 + "/" + 4;
+	final public static String RUN_ID = "/" + 92 + "/" + 1;
 	final public static int iterations = 300;
 	/**
 	 * Activity names of the default params from
@@ -177,7 +177,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		config.controler().setOutputDirectory(OUTPUT_FOLDER + RUN_ID + "/");
 		config.facilities().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/facilities1.0.fixed.xml.gz");
 		config.network().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/11.output_network.xml.gz");
-		config.plans().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/population1.0_district_subpop_ultra_secular.xml.gz");
+		config.plans().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/population1.0_district_subpop.xml.gz");
 		String url = "C:/GeoSimLab/episim_jlm/Input_data/matsim_files/test.xml";
 		LocalDate startDate = LocalDate.of(2020, 2, 25);
 		LocalDate date = startDate;
@@ -187,7 +187,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		episimConfig.setFacilitiesHandling(EpisimConfigGroup.FacilitiesHandling.snz);
 		episimConfig.setSampleSize(1);
 		episimConfig.setCalibrationParameter(0.0000015);
-		episimConfig.setInitialInfectionDistrict("yes");
+		episimConfig.setInitialInfectionDistrict("internal_Secular");
 		episimConfig.setSnapshotSeed(SnapshotSeed.reseed);
 		episimConfig.setSnapshotInterval(iterations);
 //		setting initial infections per day
