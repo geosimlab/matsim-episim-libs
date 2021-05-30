@@ -66,7 +66,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS_GROUPS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions_groups.csv";
 	
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 93 + "/" + 1;
+	final public static String RUN_ID = "/" + 92 + "/" + 1;
 	final public static int iterations = 300;
 	/**
 	 * Activity names of the default params from
@@ -158,7 +158,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 
 	@Override
 	protected void configure() {
-		bind(ContactModel.class).to(HouseholdUltraOrthodoxContactModel.class).in(Singleton.class);
+		bind(ContactModel.class).to(HouseholdSecularContactModel.class).in(Singleton.class);
 		bind(ProgressionModel.class).to(AgeDependentProgressionModel.class).in(Singleton.class);
 		bind(InitialInfectionHandler.class).to(RandomInitialInfections.class).in(Singleton.class);
 	}
@@ -173,7 +173,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		EpisimConfigGroup episimConfig = ConfigUtils.addOrGetModule(config, EpisimConfigGroup.class);
 		config.global().setCoordinateSystem("EPSG:2039");
 		Random rand = new Random();
-		config.global().setRandomSeed(rand.nextLong());
+		config.global().setRandomSeed(-3815788422936807906L);
 		config.controler().setOutputDirectory(OUTPUT_FOLDER + RUN_ID + "/");
 		config.facilities().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/facilities1.0.fixed.xml.gz");
 		config.network().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/11.output_network.xml.gz");
@@ -188,7 +188,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		episimConfig.setSampleSize(1);
 		episimConfig.setCalibrationParameter(0.0000015);
 		episimConfig.setInitialInfectionDistrict("yes");
-		episimConfig.setSnapshotSeed(SnapshotSeed.reseed);
+//		episimConfig.setSnapshotSeed(SnapshotSeed.reseed);
 		episimConfig.setSnapshotInterval(iterations);
 //		setting initial infections per day
 //		Map<LocalDate, Integer> infectionsPerDay = new TreeMap<LocalDate, Integer>();
