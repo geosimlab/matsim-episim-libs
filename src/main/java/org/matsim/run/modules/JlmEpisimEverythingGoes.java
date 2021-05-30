@@ -218,17 +218,17 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		double group_b_open_rate_closing_date = 1;
 //		end of first closure
 		LocalDate openingDate= LocalDate.of(2020, 5, 5);
-		double group_a_open_rate_opening_date = 0.5;
+		double group_a_open_rate_opening_date = 0.4;
 		double group_b_open_rate_opening_date = 1;
 //		out of school
 		LocalDate closingDate2 = LocalDate.of(2020, 6, 21);
-		double group_a_open_rate_closing_date2 = 0.7;
+		double group_a_open_rate_closing_date2 = 0.9;
 		double group_b_open_rate_closing_date2 = 1;
 		LocalDate closingDate3 = LocalDate.of(2020, 7, 6);
 		double group_a_open_rate_closing_date3 = 0.4;
 		double group_b_open_rate_closing_date3 = 1;
 		LocalDate closingDate4 = LocalDate.of(2020, 8, 23);
-		double group_a_open_rate_closing_date4 = 0.8;
+		double group_a_open_rate_closing_date4 = 0.7;
 		double group_b_open_rate_closing_date4 = 1;
 		LocalDate closingDate5 = LocalDate.of(2020, 9, 28);
 		double group_a_open_rate_closing_date5 = 0.3;
