@@ -67,7 +67,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
 	final public static String RUN_ID = "/" + 95 + "/" + 1;
-	final public static int iterations = 50;
+	final public static int iterations = 100;
 	/**
 	 * Activity names of the default params from
 	 * {@link #addDefaultParams(EpisimConfigGroup)}.
