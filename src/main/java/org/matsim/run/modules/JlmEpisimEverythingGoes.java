@@ -69,7 +69,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS_GROUPS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions_groups.csv";
 
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 96 + "/" + 4;
+	final public static String RUN_ID = "/" + 98 + "/" + 1;
 	final public static int iterations = 400;
 	/**
 	 * Activity names of the default params from
@@ -177,7 +177,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		EpisimConfigGroup episimConfig = ConfigUtils.addOrGetModule(config, EpisimConfigGroup.class);
 		config.global().setCoordinateSystem("EPSG:2039");
 		Random rand = new Random();
-		config.global().setRandomSeed(rand.nextLong());
+		config.global().setRandomSeed(-3815788422936807906L);
 		config.controler().setOutputDirectory(OUTPUT_FOLDER + RUN_ID + "/");
 		config.facilities().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/facilities1.0.fixed.xml.gz");
 		config.network().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/11.output_network.xml.gz");
@@ -194,7 +194,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		episimConfig.setInitialInfectionDistrict("yes");
 		episimConfig.setSnapshotSeed(SnapshotSeed.reseed);
 		episimConfig.setSnapshotInterval(50);
-		episimConfig.setStartFromSnapshot("C:/GeoSimLab/episim_jlm/output/91/2/episim-snapshot-300-2020-12-20.zip");
+//		episimConfig.setStartFromSnapshot("C:/GeoSimLab/episim_jlm/output/91/2/episim-snapshot-300-2020-12-20.zip");
 
 		//		setting initial infections per day
 		//		Map<LocalDate, Integer> infectionsPerDay = new TreeMap<LocalDate, Integer>();
