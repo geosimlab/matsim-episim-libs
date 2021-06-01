@@ -240,7 +240,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		double group_a_open_rate_closing_date5 = 0.3;
 		double group_b_open_rate_closing_date5 = 1;
 		LocalDate closingDate6 = LocalDate.of(2020, 10, 18);
-		double group_a_open_rate_closing_date6 = 0.7;
+		double group_a_open_rate_closing_date6 = 0.9;
 		double group_b_open_rate_closing_date6 = 1;
 		LocalDate closingDate7 = LocalDate.of(2020, 12, 27);
 		double group_a_open_rate_closing_date7 = 0.5;
