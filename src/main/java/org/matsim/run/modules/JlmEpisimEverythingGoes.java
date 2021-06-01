@@ -66,8 +66,8 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS_GROUPS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions_groups.csv";
 	
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 93 + "/" + 1;
-	final public static int iterations = 300;
+	final public static String RUN_ID = "/" + 94 + "/" + 1;
+	final public static int iterations = 100;
 	/**
 	 * Activity names of the default params from
 	 * {@link #addDefaultParams(EpisimConfigGroup)}.
@@ -189,7 +189,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		episimConfig.setCalibrationParameter(0.0000015);
 		episimConfig.setInitialInfectionDistrict("yes");
 //		episimConfig.setSnapshotSeed(SnapshotSeed.reseed);
-		episimConfig.setSnapshotInterval(iterations);
+		episimConfig.setSnapshotInterval(50);
 //		setting initial infections per day
 //		Map<LocalDate, Integer> infectionsPerDay = new TreeMap<LocalDate, Integer>();
 //		for (int i = 1;i <= 10;i++) {
