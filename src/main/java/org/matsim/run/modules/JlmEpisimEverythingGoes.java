@@ -39,6 +39,7 @@ import org.matsim.api.core.v01.Scenario;
 import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigUtils;
 import org.matsim.episim.EpisimConfigGroup;
+import org.matsim.episim.VaccinationConfigGroup;
 import org.matsim.episim.EpisimConfigGroup.SnapshotSeed;
 import org.matsim.episim.model.AgeDependentProgressionModel;
 import org.matsim.episim.model.ContactModel;
@@ -49,6 +50,8 @@ import org.matsim.episim.model.HouseholdUltraOrthodoxContactModel;
 import org.matsim.episim.model.InitialInfectionHandler;
 import org.matsim.episim.model.ProgressionModel;
 import org.matsim.episim.model.RandomInitialInfections;
+import org.matsim.episim.model.RandomVaccination;
+import org.matsim.episim.model.VaccinationModel;
 import org.matsim.episim.policy.FixedPolicy;
 import org.matsim.episim.policy.Restriction;
 import org.matsim.episim.policy.FixedPolicy.ConfigBuilder;
@@ -64,10 +67,10 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 
 	final public static String JLM_RESTRICTIONS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions.csv";
 	final public static String JLM_RESTRICTIONS_GROUPS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions_groups.csv";
-	
+
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 95 + "/" + 1;
-	final public static int iterations = 100;
+	final public static String RUN_ID = "/" + 96 + "/" + 1;
+	final public static int iterations = 400;
 	/**
 	 * Activity names of the default params from
 	 * {@link #addDefaultParams(EpisimConfigGroup)}.
@@ -80,17 +83,17 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 
 		int spaces = 20;
 		episimConfig.getOrAddContainerParams("pt", "tr").setContactIntensity(10.0).setSpacesPerFacility(spaces);
-//		episimConfig.getOrAddContainerParams("work").setContactIntensity(1.47).setSpacesPerFacility(spaces);
-//		episimConfig.getOrAddContainerParams("leisure").setContactIntensity(9.24).setSpacesPerFacility(spaces);
-//		episimConfig.getOrAddContainerParams("kindergarden").setContactIntensity(11.0).setSpacesPerFacility(spaces);
-//		episimConfig.getOrAddContainerParams("elementary").setContactIntensity(11.0).setSpacesPerFacility(spaces);
-//		episimConfig.getOrAddContainerParams("junior_high").setContactIntensity(11.0).setSpacesPerFacility(spaces);
-//		episimConfig.getOrAddContainerParams("high_school").setContactIntensity(11.).setSpacesPerFacility(spaces);
-//		episimConfig.getOrAddContainerParams("university").setContactIntensity(5.5).setSpacesPerFacility(spaces);
-//		episimConfig.getOrAddContainerParams("other").setContactIntensity(0.88).setSpacesPerFacility(spaces);
-//		episimConfig.getOrAddContainerParams("tjlm").setContactIntensity(1.47).setSpacesPerFacility(spaces);
-//		episimConfig.getOrAddContainerParams("fjlm").setContactIntensity(1.47).setSpacesPerFacility(spaces);
-//		_internal_arab
+		//		episimConfig.getOrAddContainerParams("work").setContactIntensity(1.47).setSpacesPerFacility(spaces);
+		//		episimConfig.getOrAddContainerParams("leisure").setContactIntensity(9.24).setSpacesPerFacility(spaces);
+		//		episimConfig.getOrAddContainerParams("kindergarden").setContactIntensity(11.0).setSpacesPerFacility(spaces);
+		//		episimConfig.getOrAddContainerParams("elementary").setContactIntensity(11.0).setSpacesPerFacility(spaces);
+		//		episimConfig.getOrAddContainerParams("junior_high").setContactIntensity(11.0).setSpacesPerFacility(spaces);
+		//		episimConfig.getOrAddContainerParams("high_school").setContactIntensity(11.).setSpacesPerFacility(spaces);
+		//		episimConfig.getOrAddContainerParams("university").setContactIntensity(5.5).setSpacesPerFacility(spaces);
+		//		episimConfig.getOrAddContainerParams("other").setContactIntensity(0.88).setSpacesPerFacility(spaces);
+		//		episimConfig.getOrAddContainerParams("tjlm").setContactIntensity(1.47).setSpacesPerFacility(spaces);
+		//		episimConfig.getOrAddContainerParams("fjlm").setContactIntensity(1.47).setSpacesPerFacility(spaces);
+		//		_internal_arab
 		episimConfig.getOrAddContainerParams("work_internal_arab").setContactIntensity(1.47).setSpacesPerFacility(spaces);
 		episimConfig.getOrAddContainerParams("leisure_internal_arab").setContactIntensity(9.24).setSpacesPerFacility(spaces);
 		episimConfig.getOrAddContainerParams("kindergarden_internal_arab").setContactIntensity(11.0).setSpacesPerFacility(spaces);
@@ -101,7 +104,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		episimConfig.getOrAddContainerParams("other_internal_arab").setContactIntensity(0.88).setSpacesPerFacility(spaces);
 		episimConfig.getOrAddContainerParams("tjlm_internal_arab").setContactIntensity(1.47).setSpacesPerFacility(spaces);
 		episimConfig.getOrAddContainerParams("fjlm_internal_arab").setContactIntensity(1.47).setSpacesPerFacility(spaces);
-//		_internal_Secular
+		//		_internal_Secular
 		episimConfig.getOrAddContainerParams("work_internal_Secular").setContactIntensity(1.47).setSpacesPerFacility(spaces);
 		episimConfig.getOrAddContainerParams("leisure_internal_Secular").setContactIntensity(9.24).setSpacesPerFacility(spaces);
 		episimConfig.getOrAddContainerParams("kindergarden_internal_Secular").setContactIntensity(11.0).setSpacesPerFacility(spaces);
@@ -112,7 +115,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		episimConfig.getOrAddContainerParams("other_internal_Secular").setContactIntensity(0.88).setSpacesPerFacility(spaces);
 		episimConfig.getOrAddContainerParams("tjlm_internal_Secular").setContactIntensity(1.47).setSpacesPerFacility(spaces);
 		episimConfig.getOrAddContainerParams("fjlm_internal_Secular").setContactIntensity(1.47).setSpacesPerFacility(spaces);
-//		_internal_Ultra-Orthodox
+		//		_internal_Ultra-Orthodox
 		episimConfig.getOrAddContainerParams("work_internal_Ultra-Orthodox").setContactIntensity(1.47).setSpacesPerFacility(spaces);
 		episimConfig.getOrAddContainerParams("leisure_internal_Ultra-Orthodox").setContactIntensity(9.24).setSpacesPerFacility(spaces);
 		episimConfig.getOrAddContainerParams("kindergarden_internal_Ultra-Orthodox").setContactIntensity(11.0).setSpacesPerFacility(spaces);
@@ -123,35 +126,35 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		episimConfig.getOrAddContainerParams("other_internal_Ultra-Orthodox").setContactIntensity(0.88).setSpacesPerFacility(spaces);
 		episimConfig.getOrAddContainerParams("tjlm_internal_Ultra-Orthodox").setContactIntensity(1.47).setSpacesPerFacility(spaces);
 		episimConfig.getOrAddContainerParams("fjlm_internal_Ultra-Orthodox").setContactIntensity(1.47).setSpacesPerFacility(spaces);
-//		_external
-//		episimConfig.getOrAddContainerParams("work_external").setContactIntensity(1.47).setSpacesPerFacility(spaces);
-//		episimConfig.getOrAddContainerParams("leisure_external").setContactIntensity(9.24).setSpacesPerFacility(spaces);
-//		episimConfig.getOrAddContainerParams("kindergarden_external").setContactIntensity(11.0).setSpacesPerFacility(spaces);
-//		episimConfig.getOrAddContainerParams("elementary_external").setContactIntensity(11.0).setSpacesPerFacility(spaces);
-//		episimConfig.getOrAddContainerParams("junior_high_external").setContactIntensity(11.0).setSpacesPerFacility(spaces);
-//		episimConfig.getOrAddContainerParams("high_school_external").setContactIntensity(11.).setSpacesPerFacility(spaces);
-//		episimConfig.getOrAddContainerParams("university_external").setContactIntensity(5.5).setSpacesPerFacility(spaces);
-//		episimConfig.getOrAddContainerParams("other_external").setContactIntensity(0.88).setSpacesPerFacility(spaces);
+		//		_external
+		//		episimConfig.getOrAddContainerParams("work_external").setContactIntensity(1.47).setSpacesPerFacility(spaces);
+		//		episimConfig.getOrAddContainerParams("leisure_external").setContactIntensity(9.24).setSpacesPerFacility(spaces);
+		//		episimConfig.getOrAddContainerParams("kindergarden_external").setContactIntensity(11.0).setSpacesPerFacility(spaces);
+		//		episimConfig.getOrAddContainerParams("elementary_external").setContactIntensity(11.0).setSpacesPerFacility(spaces);
+		//		episimConfig.getOrAddContainerParams("junior_high_external").setContactIntensity(11.0).setSpacesPerFacility(spaces);
+		//		episimConfig.getOrAddContainerParams("high_school_external").setContactIntensity(11.).setSpacesPerFacility(spaces);
+		//		episimConfig.getOrAddContainerParams("university_external").setContactIntensity(5.5).setSpacesPerFacility(spaces);
+		//		episimConfig.getOrAddContainerParams("other_external").setContactIntensity(0.88).setSpacesPerFacility(spaces);
 		episimConfig.getOrAddContainerParams("tjlm_external").setContactIntensity(1.47).setSpacesPerFacility(spaces);
 		episimConfig.getOrAddContainerParams("fjlm_external").setContactIntensity(1.47).setSpacesPerFacility(spaces);
-//		
+		//		
 		episimConfig.getOrAddContainerParams("home_secular").setContactIntensity(1.0).setSpacesPerFacility(1);
 		episimConfig.getOrAddContainerParams("home_ultra-orthodox").setContactIntensity(1.0).setSpacesPerFacility(1);
 		episimConfig.getOrAddContainerParams("home_arab").setContactIntensity(1.0).setSpacesPerFacility(1);
 		episimConfig.getOrAddContainerParams("home_tjlm").setContactIntensity(1.0).setSpacesPerFacility(1);
 		episimConfig.getOrAddContainerParams("home_fjlm").setContactIntensity(1.0).setSpacesPerFacility(1);
-//		episimConfig.getOrAddContainerParams("religion_jewish").setContactIntensity(11.0).setSpacesPerFacility(1);
-//		episimConfig.getOrAddContainerParams("religion_arab").setContactIntensity(11.0).setSpacesPerFacility(1);
-//		_internal_arab
+		//		episimConfig.getOrAddContainerParams("religion_jewish").setContactIntensity(11.0).setSpacesPerFacility(1);
+		//		episimConfig.getOrAddContainerParams("religion_arab").setContactIntensity(11.0).setSpacesPerFacility(1);
+		//		_internal_arab
 		episimConfig.getOrAddContainerParams("religion_jewish_internal_arab").setContactIntensity(11.0).setSpacesPerFacility(1);
 		episimConfig.getOrAddContainerParams("religion_arab_internal_arab").setContactIntensity(11.0).setSpacesPerFacility(1);
-//		_internal_Secular
+		//		_internal_Secular
 		episimConfig.getOrAddContainerParams("religion_jewish_internal_Secular").setContactIntensity(11.0).setSpacesPerFacility(1);
 		episimConfig.getOrAddContainerParams("religion_arab_internal_Secular").setContactIntensity(11.0).setSpacesPerFacility(1);
-//		_internal_Ultra-Orthodox
+		//		_internal_Ultra-Orthodox
 		episimConfig.getOrAddContainerParams("religion_jewish_internal_Ultra-Orthodox").setContactIntensity(11.0).setSpacesPerFacility(1);
 		episimConfig.getOrAddContainerParams("religion_arab_internal_Ultra-Orthodox").setContactIntensity(11.0).setSpacesPerFacility(1);
-		
+
 		episimConfig.getOrAddContainerParams("home").setContactIntensity(1.0).setSpacesPerFacility(1);
 		episimConfig.getOrAddContainerParams("quarantine_home").setContactIntensity(1.0).setSpacesPerFacility(1);
 	}
@@ -161,6 +164,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		bind(ContactModel.class).to(HouseholdUltraOrthodoxContactModel.class).in(Singleton.class);
 		bind(ProgressionModel.class).to(AgeDependentProgressionModel.class).in(Singleton.class);
 		bind(InitialInfectionHandler.class).to(RandomInitialInfections.class).in(Singleton.class);
+		bind(VaccinationModel.class).to(RandomVaccination.class).in(Singleton.class);
 	}
 
 	@SuppressWarnings("null")
@@ -188,21 +192,22 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		episimConfig.setSampleSize(1);
 		episimConfig.setCalibrationParameter(0.0000015);
 		episimConfig.setInitialInfectionDistrict("yes");
-//		episimConfig.setSnapshotSeed(SnapshotSeed.reseed);
+		//		episimConfig.setSnapshotSeed(SnapshotSeed.reseed);
 		episimConfig.setSnapshotInterval(50);
-		episimConfig.setStartFromSnapshot("C:/GeoSimLab/episim_jlm/output/94/1/episim-snapshot-050-2020-04-14.zip");
-//		setting initial infections per day
-//		Map<LocalDate, Integer> infectionsPerDay = new TreeMap<LocalDate, Integer>();
-//		for (int i = 1;i <= 10;i++) {
-//			infectionsPerDay.put(date, 10);
-//			date = startDate.plusDays(i);
-//		}
-//		
-//		episimConfig.setInfections_pers_per_day(infectionsPerDay);
+		//		episimConfig.setStartFromSnapshot("C:/GeoSimLab/episim_jlm/output/94/1/episim-snapshot-050-2020-04-14.zip");
+
+		//		setting initial infections per day
+		//		Map<LocalDate, Integer> infectionsPerDay = new TreeMap<LocalDate, Integer>();
+		//		for (int i = 1;i <= 10;i++) {
+		//			infectionsPerDay.put(date, 10);
+		//			date = startDate.plusDays(i);
+		//		}
+		//		
+		//		episimConfig.setInfections_pers_per_day(infectionsPerDay);
 
 		addDefaultParams(episimConfig);
-//		more general restrictions
-		
+		//		more general restrictions
+
 		String[] group_arabs_a_activities = {"kindergarden_internal_arab", "elementary_internal_arab","junior_high_internal_arab", "high_school_internal_arab", 
 				"university_internal_arab","religion_jewish_internal_arab", "religion_arab_internal_arab","leisure_internal_arab"};
 		String[] group_arabs_b_activities = {"pt", "work_internal_arab", "other_internal_arab", "fjlm_internal_arab", "tjlm_internal_arab",};
@@ -212,16 +217,16 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		String[] group_ultra_a_activities = {"kindergarden_internal_Ultra-Orthodox", "elementary_internal_Ultra-Orthodox","junior_high_internal_Ultra-Orthodox", "high_school_internal_Ultra-Orthodox", 
 				"university_internal_Ultra-Orthodox","religion_jewish_internal_Ultra-Orthodox", "religion_arab_internal_Ultra-Orthodox","leisure_internal_Ultra-Orthodox"};
 		String[] group_ultra_b_activities = {"pt", "work_internal_Ultra-Orthodox", "other_internal_Ultra-Orthodox", "fjlm_internal_Ultra-Orthodox", "tjlm_internal_Ultra-Orthodox",};
-//		first clsure
+		//		first clsure
 		LocalDate closingDate = LocalDate.of(2020, 3, 15);
 		double group_secular_a_open_rate_closing_date = 0.3;
 		double group_ultra_a_open_rate_closing_date = 0.3;
 		double group_b_open_rate_closing_date = 1;
-//		end of first closure
+		//		end of first closure
 		LocalDate openingDate= LocalDate.of(2020, 5, 5);
 		double group_a_open_rate_opening_date = 0.4;
 		double group_b_open_rate_opening_date = 1;
-//		out of school
+		//		out of school
 		LocalDate closingDate2 = LocalDate.of(2020, 6, 21);
 		double group_a_open_rate_closing_date2 = 0.8;
 		double group_b_open_rate_closing_date2 = 1;
@@ -235,8 +240,11 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		double group_a_open_rate_closing_date5 = 0.3;
 		double group_b_open_rate_closing_date5 = 1;
 		LocalDate closingDate6 = LocalDate.of(2020, 10, 18);
-		double group_a_open_rate_closing_date6 = 0.5;
+		double group_a_open_rate_closing_date6 = 0.7;
 		double group_b_open_rate_closing_date6 = 1;
+		LocalDate closingDate7 = LocalDate.of(2020, 12, 27);
+		double group_a_open_rate_closing_date7 = 0.5;
+		double group_b_open_rate_closing_date7 = 1;
 		episimConfig.setPolicy(FixedPolicy.class, FixedPolicy.config()
 				.restrict(closingDate , group_secular_a_open_rate_closing_date , group_secular_a_activities)
 				.restrict(closingDate , group_b_open_rate_closing_date , group_secular_b_activities)
@@ -252,6 +260,8 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 				.restrict(closingDate5 , group_b_open_rate_closing_date5 , group_secular_b_activities)
 				.restrict(closingDate6 , group_a_open_rate_closing_date6 , group_secular_a_activities)
 				.restrict(closingDate6 , group_b_open_rate_closing_date6 , group_secular_b_activities)
+				.restrict(closingDate7 , group_a_open_rate_closing_date7 , group_secular_a_activities)
+				.restrict(closingDate7 , group_b_open_rate_closing_date7 , group_secular_b_activities)
 				.restrict(closingDate , group_ultra_a_open_rate_closing_date , group_ultra_a_activities)
 				.restrict(closingDate , group_b_open_rate_closing_date , group_ultra_b_activities)
 				.restrict(openingDate , group_a_open_rate_opening_date , group_ultra_a_activities)
@@ -266,8 +276,16 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 				.restrict(closingDate5 , group_b_open_rate_closing_date5 , group_ultra_b_activities)
 				.restrict(closingDate6 , group_a_open_rate_closing_date6 , group_ultra_a_activities)
 				.restrict(closingDate6 , group_b_open_rate_closing_date6 , group_ultra_b_activities)
+				.restrict(closingDate7 , group_a_open_rate_closing_date7 , group_ultra_a_activities)
+				.restrict(closingDate7 , group_b_open_rate_closing_date7 , group_ultra_b_activities)
 				.build()
-		);
+				);
+//		VaccinationConfigGroup vaccinationConfigGroup = ConfigUtils.addOrGetModule(config, VaccinationConfigGroup.class);
+//		String vaccinationStartDate = "2020-12-21";
+//		int dailyVaccinations = 1333;
+//		vaccinationConfigGroup.setVaccinationCapacity_pers_per_day(Map.of(
+//				episimConfig.getStartDate(), 0,
+//				LocalDate.parse(vaccinationStartDate), dailyVaccinations));
 		return config;
 	}
 
@@ -294,7 +312,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return policy;
 	}
 	public ConfigBuilder JlmRestrictionsGroups(String inputResterctions,
@@ -333,7 +351,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return policy;
 	}
 }
