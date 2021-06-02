@@ -30,6 +30,7 @@ import com.opencsv.exceptions.CsvValidationException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.TreeMap;
@@ -69,7 +70,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS_GROUPS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions_groups.csv";
 
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 98 + "/" + 1;
+	final public static String RUN_ID = "/" + 99 + "/" + 1;
 	final public static int iterations = 400;
 	/**
 	 * Activity names of the default params from
@@ -177,7 +178,8 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		EpisimConfigGroup episimConfig = ConfigUtils.addOrGetModule(config, EpisimConfigGroup.class);
 		config.global().setCoordinateSystem("EPSG:2039");
 		Random rand = new Random();
-		config.global().setRandomSeed(-3815788422936807906L);
+//		config.global().setRandomSeed(-3815788422936807906L);
+		config.global().setRandomSeed(rand.nextLong());
 		config.controler().setOutputDirectory(OUTPUT_FOLDER + RUN_ID + "/");
 		config.facilities().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/facilities1.0.fixed.xml.gz");
 		config.network().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/11.output_network.xml.gz");
@@ -187,7 +189,13 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		LocalDate date = startDate;
 		episimConfig.setInputEventsFile(url);
 		episimConfig.setStartDate(startDate);
-		episimConfig.setInitialInfections(100);
+//		episimConfig.setInitialInfections(100);
+		int[] diseaseimport = {1,1,3,1,2,3,3,4,3,6,2,2,5,3,3,5,3,1,2,1,3,3,0,3,2,5,6,0,4,1,4,3,7,2,4,3,4,3,5,2,4,4,3,5,3,0,0,6,2,4,2,2,4,1,3,1,1,4,4,1,2,2,3,2,1,5,3,4,2,2,4,4,3,4,3,3,3,2,2,3,4,2,1,1,4,4,4,3,2,2,3,3,3,3,1,1,5,5,3,3,3,1,1,2,5,1,3,3,0,4,1,3,3,3,4,3,2,4,3,2,1,1,5,4,3,1,7,5,5,4,6,5,6,2,4,1,1,1,3,2,4,2,3,3,2,3,1,3,2,1,3,4,2,2,0,2,3,2,3,2,1,3,3,2,3,3,1,3,1,3,0,4,3,2,4,3,2,5,1,4,5,6,3,5,3,4,3,5,2,2,5,4,3,7,5,6,2,5,3,0,4,0,5,4,1,6,2,2,4,3,2,2,2,4,6,3,1,3,4,4,1,5,3,6,3,3,4,2,4,2,3,5,2,2,5,6,1,0,3,4,2,5,0,3,2,5,2,3,4,1,1,4,1,2,3,2,5,5,1,4,5,2,2,3,2,5,1,2,6,0,5,2,6,3,6,3,1,5,1,3,6,5,1,4,2,4,2,1,2,5,3,3,6,3,4,3,0,2,2,0,0,2,1,3,2,5,3,0,2,4,1,4,2,3,2,2,4,1,4,1,4,2,5,4,2,2,3,6,4,4,2,6,0,6,1,6,3,2,1,3,4,6,2,2,3,3,2,3,3,3,4,4,0,3,4,4,2,1,5,6,6,5,4,3,2,4,2,5,2,3,3,4,3,4,6,4,2,3,2,6,8,0,7,4,5,2,3,3,3,7,3,2,1,4,9,0,1,1,2,2};
+		Map<LocalDate, Integer> intialInfections = new HashMap<LocalDate,Integer>();
+		for(int j = 0; j < iterations;j++) {
+			intialInfections.put(startDate.plusDays(j), diseaseimport[j]);
+		}
+		episimConfig.setInfections_pers_per_day(intialInfections);
 		episimConfig.setFacilitiesHandling(EpisimConfigGroup.FacilitiesHandling.snz);
 		episimConfig.setSampleSize(1);
 		episimConfig.setCalibrationParameter(0.0000015);
