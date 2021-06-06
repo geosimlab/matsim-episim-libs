@@ -71,7 +71,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS_GROUPS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions_groups.csv";
 
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 103 + "/" + 4;
+	final public static String RUN_ID = "/" + 104 + "/" + 1;
 	final public static int iterations = 400;
 	/**
 	 * Activity names of the default params from
@@ -200,7 +200,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		episimConfig.setInitialInfections(IntStream.of(diseaseimport).sum());
 		episimConfig.setFacilitiesHandling(EpisimConfigGroup.FacilitiesHandling.snz);
 		episimConfig.setSampleSize(1);
-		episimConfig.setCalibrationParameter(0.0000015);
+		episimConfig.setCalibrationParameter(0.000001);
 		episimConfig.setInitialInfectionDistrict("yes");
 		episimConfig.setSnapshotSeed(SnapshotSeed.reseed);
 		episimConfig.setSnapshotInterval(50);
