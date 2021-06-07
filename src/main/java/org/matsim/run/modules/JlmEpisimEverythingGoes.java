@@ -45,10 +45,12 @@ import org.matsim.episim.VaccinationConfigGroup;
 import org.matsim.episim.EpisimConfigGroup.SnapshotSeed;
 import org.matsim.episim.model.AgeDependentProgressionModel;
 import org.matsim.episim.model.ContactModel;
+import org.matsim.episim.model.GroupInfectionModel;
 import org.matsim.episim.model.HouseholdContactModel;
 import org.matsim.episim.model.HouseholdSecularContactModel;
 import org.matsim.episim.model.HouseholdSecularUltraContactModel;
 import org.matsim.episim.model.HouseholdUltraOrthodoxContactModel;
+import org.matsim.episim.model.InfectionModel;
 import org.matsim.episim.model.InitialInfectionHandler;
 import org.matsim.episim.model.ProgressionModel;
 import org.matsim.episim.model.RandomInitialInfections;
@@ -169,6 +171,8 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		bind(ProgressionModel.class).to(AgeDependentProgressionModel.class).in(Singleton.class);
 		bind(InitialInfectionHandler.class).to(RandomInitialInfections.class).in(Singleton.class);
 		bind(VaccinationModel.class).to(RandomVaccination.class).in(Singleton.class);
+		bind(InfectionModel.class).to(GroupInfectionModel.class).in(Singleton.class);
+		
 	}
 
 	@SuppressWarnings("null")
