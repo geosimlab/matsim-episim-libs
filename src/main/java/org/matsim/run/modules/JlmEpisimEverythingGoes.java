@@ -75,7 +75,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
 	final public static String RUN_ID = "/" + 110 + "/" + 1;
 	final public static int iterations = 400;
-	final public static double ultraOrthodoxInfectionRate = 1;
+	final public static double ultraOrthodoxInfectionRate = 10;
 	final public static double secularInfectionRate = 1;
 	/**
 	 * Activity names of the default params from
