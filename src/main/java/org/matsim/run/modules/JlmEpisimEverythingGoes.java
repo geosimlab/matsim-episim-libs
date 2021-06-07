@@ -71,7 +71,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS_GROUPS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions_groups.csv";
 
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 108 + "/" + 1;
+	final public static String RUN_ID = "/" + 109 + "/" + 1;
 	final public static int iterations = 400;
 	/**
 	 * Activity names of the default params from
@@ -206,14 +206,6 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		episimConfig.setSnapshotInterval(50);
 		//		episimConfig.setStartFromSnapshot("C:/GeoSimLab/episim_jlm/output/91/2/episim-snapshot-300-2020-12-20.zip");
 
-		//				setting initial infections per day
-		Map<LocalDate, Integer> infectionsPerDay = new TreeMap<LocalDate, Integer>();
-		for (int i = 1;i <= 10;i++) {
-			infectionsPerDay.put(date, 10);
-			date = startDate.plusDays(i);
-		}
-
-		episimConfig.setInfections_pers_per_day(infectionsPerDay);
 
 		addDefaultParams(episimConfig);
 		//		more general restrictions
