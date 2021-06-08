@@ -55,6 +55,7 @@ import org.matsim.episim.model.InitialInfectionHandler;
 import org.matsim.episim.model.ProgressionModel;
 import org.matsim.episim.model.RandomInitialInfections;
 import org.matsim.episim.model.RandomVaccination;
+import org.matsim.episim.model.VaccinationByAge;
 import org.matsim.episim.model.VaccinationModel;
 import org.matsim.episim.policy.FixedPolicy;
 import org.matsim.episim.policy.Restriction;
@@ -73,7 +74,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS_GROUPS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions_groups.csv";
 
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 113 + "/" + 1;
+	final public static String RUN_ID = "/" + 114 + "/" + 1;
 	final public static int iterations = 400;
 	final public static double ultraOrthodoxInfectionRate = 1;
 	final public static double secularInfectionRate = 1;
@@ -170,7 +171,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		bind(ContactModel.class).to(HouseholdSecularUltraContactModel.class).in(Singleton.class);
 		bind(ProgressionModel.class).to(AgeDependentProgressionModel.class).in(Singleton.class);
 		bind(InitialInfectionHandler.class).to(RandomInitialInfections.class).in(Singleton.class);
-		bind(VaccinationModel.class).to(RandomVaccination.class).in(Singleton.class);
+		bind(VaccinationModel.class).to(VaccinationByAge.class).in(Singleton.class);
 		bind(InfectionModel.class).to(GroupInfectionModel.class).in(Singleton.class);
 		
 	}
