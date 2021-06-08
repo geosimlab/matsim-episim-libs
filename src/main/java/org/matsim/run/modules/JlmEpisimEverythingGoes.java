@@ -73,7 +73,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS_GROUPS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions_groups.csv";
 
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 112 + "/" + 1;
+	final public static String RUN_ID = "/" + 113 + "/" + 1;
 	final public static int iterations = 400;
 	final public static double ultraOrthodoxInfectionRate = 1;
 	final public static double secularInfectionRate = 1;
@@ -308,6 +308,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 				vaccinationConfigGroup.setVaccinationCapacity_pers_per_day(Map.of(
 						episimConfig.getStartDate(), 0,
 						LocalDate.parse(vaccinationStartDate), dailyVaccinations));
+				vaccinationConfigGroup.setEffectiveness(0.99);
 		return config;
 	}
 
