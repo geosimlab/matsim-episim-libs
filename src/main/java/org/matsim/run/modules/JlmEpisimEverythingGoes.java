@@ -74,7 +74,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS_GROUPS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions_groups.csv";
 
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 125 + "/" + 1;
+	final public static String RUN_ID = "/" + 126 + "/" + 1;
 	final public static int iterations = 170;
 	final public static double ultraOrthodoxInfectionRate = 1;
 	final public static double secularInfectionRate = 1;
@@ -197,8 +197,8 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 //		LocalDate date = startDate;
 		episimConfig.setInputEventsFile(url);
 		episimConfig.setStartDate(startDate);
-		//exponential distribution - 2300 sick of october
-		int[] diseaseimport = {100,101,75,73,102,91,81,76,73,69,67,41,66,59,54,63,51,33,41,36,53,43,28,42,26,35,31,33,21,21,33,24,44,20,24,22,25,20,14,14,16,15,9,12,15,17,10,16,9,11,6,10,12,11,8,5,10,8,8,10,5,11,4,9,7,1,7,3,4,4,2,2,6,6,6,3,4,2,2,4,2,2,2,1,3,3,3,3,1,4,1,1,0,1,2,2,1,0,1,0,1,0,2,1,4,4,1,2,2,1,1,0,0,1,0,0,0,1,0,0,3,0,0,0,0,1,0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1};
+		//exponential distribution - 1150 sick of october
+		int[] diseaseimport = {43,31,41,32,31,31,29,38,27,32,21,25,30,23,29,22,25,26,25,23,25,13,15,18,24,22,16,17,15,15,16,10,16,19,14,17,7,9,8,7,11,10,9,10,4,9,6,6,5,5,11,5,6,4,7,7,5,7,5,5,3,6,2,2,3,4,2,10,6,0,1,4,0,2,0,5,2,4,1,2,0,3,5,3,3,3,1,0,0,6,4,1,0,1,2,1,1,1,1,0,1,1,1,0,1,0,1,0,1,2,1,0,1,0,0,0,2,0,0,1,0,0,1,0,1,0,2,2,0,1,0,0,2,0,1,0,0,0,0,0,0,0,2,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,2,0,0,0,0,1,0,0,0,0,1};
 		Map<LocalDate, Integer> intialInfections = new HashMap<LocalDate,Integer>();
 		for(int j = 0; j < iterations;j++) {
 			intialInfections.put(startDate.plusDays(j), diseaseimport[j]);
