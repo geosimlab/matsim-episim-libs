@@ -171,7 +171,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		bind(ContactModel.class).to(HouseholdSecularUltraContactModel.class).in(Singleton.class);
 		bind(ProgressionModel.class).to(AgeDependentProgressionModel.class).in(Singleton.class);
 		bind(InitialInfectionHandler.class).to(RandomInitialInfections.class).in(Singleton.class);
-		bind(VaccinationModel.class).to(RandomVaccination.class).in(Singleton.class);
+//		bind(VaccinationModel.class).to(RandomVaccination.class).in(Singleton.class);
 		bind(InfectionModel.class).to(GroupInfectionModel.class).in(Singleton.class);
 		
 	}
@@ -198,7 +198,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		episimConfig.setInputEventsFile(url);
 		episimConfig.setStartDate(startDate);
 		//poisson first sick - 36*3.333 patients
-		int[] diseaseimport = {6,2,3,3,4,4,6,2,3,3};
+		int[] diseaseimport = {6,2,3,3,4,4,6,2,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 		Map<LocalDate, Integer> intialInfections = new HashMap<LocalDate,Integer>();
 		for(int j = 0; j < iterations;j++) {
 			intialInfections.put(startDate.plusDays(j), diseaseimport[j]);
