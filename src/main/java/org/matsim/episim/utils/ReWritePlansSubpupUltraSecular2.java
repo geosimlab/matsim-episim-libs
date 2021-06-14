@@ -32,7 +32,9 @@ public class ReWritePlansSubpupUltraSecular2 {
 //		int tot_secular = pop.getPersons().values().stream().filter(p -> p.getAttributes().getAttribute("subpopulation").equals("internal_Ultra-Orthodox")).collect(Collectors.toList()).size();
 //		IntStream stops_secular = random.ints(n_secular, 0, tot_ultra);
 		List<? extends Person> list_ultra = pop.getPersons().values().stream().filter(p -> p.getAttributes().getAttribute("subpopulation").equals("internal_Ultra-Orthodox")).collect(Collectors.toList());
+		Collections.shuffle(list_ultra);
 		List<? extends Person> list_secular = pop.getPersons().values().stream().filter(p -> p.getAttributes().getAttribute("subpopulation").equals("internal_Secular")).collect(Collectors.toList());
+		Collections.shuffle(list_secular );
 		for(int i = 0; i < n_ultra; i++) {
 			Id<Person> id = list_ultra.get(i).getId();
 			pop.getPersons().get(id).getAttributes().putAttribute("district", "yes");
