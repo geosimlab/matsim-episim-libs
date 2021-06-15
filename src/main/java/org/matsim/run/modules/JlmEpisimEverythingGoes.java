@@ -74,7 +74,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS_GROUPS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions_groups.csv";
 
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 147 + "/" + 1;
+	final public static String RUN_ID = "/" + 148 + "/" + 1;
 	final public static int iterations = 90;
 	final public static double ultraOrthodoxInfectionRate = 1;
 	final public static double secularInfectionRate = 1;
@@ -193,7 +193,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		config.network().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/11.output_network.xml.gz");
 		config.plans().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/population1.0_district_subpop_ultra_secular_equal.xml.gz");
 		String url = "C:/GeoSimLab/episim_jlm/Input_data/matsim_files/test.xml";
-		LocalDate startDate = LocalDate.of(2020, 3, 5);
+		LocalDate startDate = LocalDate.of(2020, 3, 12);
 //		LocalDate date = startDate;
 		episimConfig.setInputEventsFile(url);
 		episimConfig.setStartDate(startDate);
