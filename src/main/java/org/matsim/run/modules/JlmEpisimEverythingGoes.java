@@ -198,7 +198,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		episimConfig.setInputEventsFile(url);
 		episimConfig.setStartDate(startDate);
 		//poisson first sick - 36*3.333 patients
-		int[] diseaseimport = {12,11,14,10,10,10,5,6,10,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+		int[] diseaseimport = {12,11,14,10,10,10,5,6,10,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 		Map<LocalDate, Integer> intialInfections = new HashMap<LocalDate,Integer>();
 		for(int j = 0; j < iterations;j++) {
 			intialInfections.put(startDate.plusDays(j), diseaseimport[j]);
