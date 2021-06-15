@@ -74,8 +74,8 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS_GROUPS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions_groups.csv";
 
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 163 + "/" + 1;
-	final public static int iterations = 90;
+	final public static String RUN_ID = "/" + 164 + "/" + 1;
+	final public static int iterations = 120;
 	final public static double ultraOrthodoxInfectionRate = 1;
 	final public static double secularInfectionRate = 1;
 	/**
@@ -237,14 +237,14 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		double group_ultra_a_open_rate_closingDateHarder = 0.4;
 		double group_b_open_rate_closingDateHarder = 1;
 		LocalDate openingDate= LocalDate.of(2020, 5, 5);
-		double group_secular_a_open_rate_opening_date = 0.6;
-		double group_ultra_a_open_rate_opening_date = 0.6;
+		double group_secular_a_open_rate_opening_date = 0.45;
+		double group_ultra_a_open_rate_opening_date = 0.45;
 		double group_b_open_rate_opening_date = 1;
 //		//		out of school
-//		LocalDate closingDate2 = LocalDate.of(2020, 6, 21);
-//		double group_secular_a_open_rate_closing_date2 = 0.6;
-//		double group_ultra_a_open_rate_closing_date2 = 0.7;
-//		double group_b_open_rate_closing_date2 = 1;
+		LocalDate closingDate2 = LocalDate.of(2020, 6, 21);
+		double group_secular_a_open_rate_closing_date2 = 0.6;
+		double group_ultra_a_open_rate_closing_date2 = 0.6;
+		double group_b_open_rate_closing_date2 = 1;
 //		LocalDate closingDate3 = LocalDate.of(2020, 7, 6);
 //		double group_secular_a_open_rate_closing_date3 = 0.4;
 //		double group_ultra_a_open_rate_closing_date3 = 0.4;
@@ -279,8 +279,8 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 				.restrict(closingDateHarder , group_b_open_rate_closingDateHarder , group_secular_b_activities)
 				.restrict(openingDate , group_secular_a_open_rate_opening_date , group_secular_a_activities)
 				.restrict(openingDate , group_b_open_rate_opening_date , group_secular_b_activities)
-//				.restrict(closingDate2 , group_secular_a_open_rate_closing_date2  , group_secular_a_activities)
-//				.restrict(closingDate2 , group_b_open_rate_closing_date2 , group_secular_b_activities)
+				.restrict(closingDate2 , group_secular_a_open_rate_closing_date2  , group_secular_a_activities)
+				.restrict(closingDate2 , group_b_open_rate_closing_date2 , group_secular_b_activities)
 //				.restrict(closingDate3 , group_secular_a_open_rate_closing_date3 , group_secular_a_activities)
 //				.restrict(closingDate3 , group_b_open_rate_closing_date3 , group_secular_b_activities)
 //				.restrict(closingDate4 , group_secular_a_open_rate_closing_date4  , group_secular_a_activities)
@@ -301,8 +301,8 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 				.restrict(closingDateHarder , group_b_open_rate_closingDateHarder , group_ultra_b_activities)
 				.restrict(openingDate , group_ultra_a_open_rate_opening_date , group_ultra_a_activities)
 				.restrict(openingDate , group_b_open_rate_opening_date , group_ultra_b_activities)
-//				.restrict(closingDate2 , group_ultra_a_open_rate_closing_date2 , group_ultra_a_activities)
-//				.restrict(closingDate2 , group_b_open_rate_closing_date2 , group_ultra_b_activities)
+				.restrict(closingDate2 , group_ultra_a_open_rate_closing_date2 , group_ultra_a_activities)
+				.restrict(closingDate2 , group_b_open_rate_closing_date2 , group_ultra_b_activities)
 //				.restrict(closingDate3 , group_ultra_a_open_rate_closing_date3 , group_ultra_a_activities)
 //				.restrict(closingDate3 , group_b_open_rate_closing_date3 , group_ultra_b_activities)
 //				.restrict(closingDate4 , group_ultra_a_open_rate_closing_date4 , group_ultra_a_activities)
