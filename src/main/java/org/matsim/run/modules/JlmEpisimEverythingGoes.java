@@ -74,7 +74,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS_GROUPS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions_groups.csv";
 
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 170 + "/" + 1;
+	final public static String RUN_ID = "/" + 171 + "/" + 1;
 	final public static int iterations = 90;
 	final public static double ultraOrthodoxInfectionRate = 1;
 	final public static double secularInfectionRate = 1;
@@ -146,7 +146,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		episimConfig.getOrAddContainerParams("fjlm_external").setContactIntensity(1.47).setSpacesPerFacility(spaces);
 		//		
 		episimConfig.getOrAddContainerParams("home_secular").setContactIntensity(1.0).setSpacesPerFacility(1);
-		episimConfig.getOrAddContainerParams("home_ultra-orthodox").setContactIntensity(0.333333).setSpacesPerFacility(1);
+		episimConfig.getOrAddContainerParams("home_ultra-orthodox").setContactIntensity(1.0).setSpacesPerFacility(1);
 		episimConfig.getOrAddContainerParams("home_arab").setContactIntensity(1.0).setSpacesPerFacility(1);
 		episimConfig.getOrAddContainerParams("home_tjlm").setContactIntensity(1.0).setSpacesPerFacility(1);
 		episimConfig.getOrAddContainerParams("home_fjlm").setContactIntensity(1.0).setSpacesPerFacility(1);
@@ -168,7 +168,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 
 	@Override
 	protected void configure() {
-		bind(ContactModel.class).to(HouseholdSecularUltraContactModel.class).in(Singleton.class);
+		bind(ContactModel.class).to(HouseholdSecularContactModel.class).in(Singleton.class);
 		bind(ProgressionModel.class).to(AgeDependentProgressionModel.class).in(Singleton.class);
 		bind(InitialInfectionHandler.class).to(RandomInitialInfections.class).in(Singleton.class);
 //		bind(VaccinationModel.class).to(RandomVaccination.class).in(Singleton.class);
