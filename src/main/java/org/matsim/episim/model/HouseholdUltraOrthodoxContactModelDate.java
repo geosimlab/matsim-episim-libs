@@ -26,6 +26,7 @@ import org.apache.logging.log4j.Logger;
 import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigUtils;
 import org.matsim.episim.*;
+import org.matsim.run.modules.JlmEpisimEverythingGoes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -113,7 +114,7 @@ public final class HouseholdUltraOrthodoxContactModelDate extends AbstractContac
 		return (hasDiseaseStatusRelevantForInfectionDynamics(person1) && hasDiseaseStatusRelevantForInfectionDynamics(person2));
 	}
 	private void infectionDynamicsGeneralized(EpisimPerson personLeavingContainer, EpisimContainer<?> container, double now) {
-
+		
 		// no infection possible if there is only one person
 		if (iteration == 0 || container.getPersons().size() == 1) {
 			return;
@@ -122,7 +123,8 @@ public final class HouseholdUltraOrthodoxContactModelDate extends AbstractContac
 		if (!personRelevantForTrackingOrInfectionDynamics(personLeavingContainer, container, getRestrictions(), rnd)) {
 			return;
 		}
-
+		
+		
 		// start tracking late as possible because of computational costs
 		boolean trackingEnabled = iteration >= trackingAfterDay;
 
@@ -191,7 +193,9 @@ public final class HouseholdUltraOrthodoxContactModelDate extends AbstractContac
 				// tracking has to be enabled to report more contacts
 				reporting.reportContact(now, personLeavingContainer, contactPerson, container, infectionType, jointTimeInContainer);
 			}
-
+			if(Math.floor(now/86400) <=JlmEpisimEverythingGoes.getDaysUntilInfections()) {
+				continue;
+			} ;
 			if (!personsCanInfectEachOther(personLeavingContainer, contactPerson,leavingPersonsActivity,otherPersonsActivity)) {
 				continue;
 			}
