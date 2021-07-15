@@ -78,7 +78,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS_GROUPS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions_groups.csv";
 
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 184 + "/" + 1;
+	final public static String RUN_ID = "/" + 185 + "/" + 1;
 	final public static int iterations = 170;
 	final public static double ultraOrthodoxInfectionRate = 1;
 	final public static double secularInfectionRate = 1;
@@ -159,7 +159,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		episimConfig.getOrAddContainerParams("fjlm_external").setContactIntensity(1.47).setSpacesPerFacility(spaces);
 		//		
 		episimConfig.getOrAddContainerParams("home_secular").setContactIntensity(1.0).setSpacesPerFacility(1);
-		episimConfig.getOrAddContainerParams("home_ultra-orthodox").setContactIntensity(0.333333).setSpacesPerFacility(1);
+		episimConfig.getOrAddContainerParams("home_ultra-orthodox").setContactIntensity(1.0).setSpacesPerFacility(1);
 		episimConfig.getOrAddContainerParams("home_arab").setContactIntensity(1.0).setSpacesPerFacility(1);
 		episimConfig.getOrAddContainerParams("home_tjlm").setContactIntensity(1.0).setSpacesPerFacility(1);
 		episimConfig.getOrAddContainerParams("home_fjlm").setContactIntensity(1.0).setSpacesPerFacility(1);
@@ -266,7 +266,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		double group_b_open_rate_closing_date3 = 1;
 		LocalDate closingDate4 = LocalDate.of(2020, 8, 23);
 		double group_secular_a_open_rate_closing_date4 = 0.6;
-		double group_ultra_a_open_rate_closing_date4 = 0.6;
+		double group_ultra_a_open_rate_closing_date4 = 0.4;
 		double group_b_open_rate_closing_date4 = 1;
 		LocalDate closingDate5 = LocalDate.of(2020, 9, 28);
 		double group_secular_a_open_rate_closing_date5 = 0.3;
