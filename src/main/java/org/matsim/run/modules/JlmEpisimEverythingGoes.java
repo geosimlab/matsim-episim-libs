@@ -78,7 +78,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS_GROUPS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions_groups.csv";
 
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 182 + "/" + 1;
+	final public static String RUN_ID = "/" + 183 + "/" + 1;
 	final public static int iterations = 170;
 	final public static double ultraOrthodoxInfectionRate = 1;
 	final public static double secularInfectionRate = 1;
@@ -265,8 +265,8 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		double group_ultra_a_open_rate_closing_date3 = 0.4;
 		double group_b_open_rate_closing_date3 = 1;
 		LocalDate closingDate4 = LocalDate.of(2020, 8, 23);
-		double group_secular_a_open_rate_closing_date4 = 0.6;
-		double group_ultra_a_open_rate_closing_date4 = 0.9;
+		double group_secular_a_open_rate_closing_date4 = 0.4;
+		double group_ultra_a_open_rate_closing_date4 = 0.4;
 		double group_b_open_rate_closing_date4 = 1;
 		LocalDate closingDate5 = LocalDate.of(2020, 9, 28);
 		double group_secular_a_open_rate_closing_date5 = 0.3;
