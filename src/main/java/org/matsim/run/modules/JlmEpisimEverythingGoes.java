@@ -78,10 +78,19 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static int iterations = 90;
 	final public static double ultraOrthodoxInfectionRate = 1;
 	final public static double secularInfectionRate = 1;
+	public static long rand_seed = 1;
 	/**
 	 * Activity names of the default params from
 	 * {@link #addDefaultParams(EpisimConfigGroup)}.
 	 */
+
+	public static long getRand_seed() {
+		return rand_seed;
+	}
+
+	public static void setRand_seed(long rand_seed) {
+		JlmEpisimEverythingGoes.rand_seed = rand_seed;
+	}
 
 	/**
 	 * Adds default parameters that should be valid for most scenarios.

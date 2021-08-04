@@ -106,6 +106,9 @@ public final class RunEpisim implements Callable<Integer> {
 	@CommandLine.Option(names = "--iterations", description = "Maximum number of days to simulate.", defaultValue = ""+JlmEpisimEverythingGoes.iterations)
 	private int maxIterations;
 
+	@CommandLine.Option(names = "--rand_seed", description = "random seed.", defaultValue = "1")
+	private static long rand_seed;
+	
 	@CommandLine.Parameters(hidden = true)
 	private String[] remainder;
 
@@ -120,6 +123,7 @@ public final class RunEpisim implements Callable<Integer> {
 	}
 
 	public static void main(String[] args) throws InterruptedException {
+		JlmEpisimEverythingGoes.setRand_seed(rand_seed);
 		new CommandLine(new RunEpisim())
 				.setStopAtUnmatched(false)
 				.setUnmatchedOptionsArePositionalParams(true)
