@@ -91,7 +91,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	public static void setSecond_id(long second_id) {
 		JlmEpisimEverythingGoes.second_id = second_id;
 	}
-	final public static String RUN_ID = "/" + first_id + "/" + second_id;
+//	final public static String RUN_ID = "/" + first_id + "/" + second_id;
 	final public static int iterations = 90;
 	final public static double ultraOrthodoxInfectionRate = 1;
 	final public static double secularInfectionRate = 1;
@@ -215,6 +215,7 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 //		config.global().setRandomSeed(-5497945738807936953L);
 //		config.global().setRandomSeed(rand.nextLong());
 		config.global().setRandomSeed(rand_seed);
+		String RUN_ID = "/" + first_id + "/" + second_id;
 		config.controler().setOutputDirectory(OUTPUT_FOLDER + RUN_ID + "/");
 		config.facilities().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/facilities1.0.fixed.xml.gz");
 		config.network().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/11.output_network.xml.gz");
