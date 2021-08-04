@@ -107,7 +107,13 @@ public final class RunEpisim implements Callable<Integer> {
 	private int maxIterations;
 
 	@CommandLine.Option(names = "--rand_seed", description = "random seed.", defaultValue = "1")
-	private static long rand_seed;
+	private long rand_seed;
+	
+	@CommandLine.Option(names = "--first_id", description = "first id.", defaultValue = "1")
+	private long first_id;
+	
+	@CommandLine.Option(names = "--second_id", description = "second id.", defaultValue = "1")
+	private long second_id;
 	
 	@CommandLine.Parameters(hidden = true)
 	private String[] remainder;
@@ -123,7 +129,7 @@ public final class RunEpisim implements Callable<Integer> {
 	}
 
 	public static void main(String[] args) throws InterruptedException {
-		JlmEpisimEverythingGoes.setRand_seed(rand_seed);
+		
 		new CommandLine(new RunEpisim())
 				.setStopAtUnmatched(false)
 				.setUnmatchedOptionsArePositionalParams(true)
@@ -248,7 +254,9 @@ public final class RunEpisim implements Callable<Integer> {
 		}
 
 		log.info("Starting with modules: {}", modules);
-
+		JlmEpisimEverythingGoes.setRand_seed(rand_seed);
+		JlmEpisimEverythingGoes.setFirst_id(first_id);
+		JlmEpisimEverythingGoes.setSecond_id(second_id);
 		Injector injector = Guice.createInjector(Modules.override(new EpisimModule()).with(modules));
 		// yyyyyy In MATSim, the use of "override" in the production code was a consequence of the original design, which was a framework with default modules, and the
 		// capability to replace them was added later.  Most of us agree that this went against the intent of Guice, which we interpret as forcing users to provide unique

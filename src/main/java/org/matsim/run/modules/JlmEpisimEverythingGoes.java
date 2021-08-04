@@ -74,7 +74,24 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 	final public static String JLM_RESTRICTIONS_GROUPS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions_groups.csv";
 
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	final public static String RUN_ID = "/" + 190 + "/" + 1;
+	public static long first_id = 1;
+	public static long second_id = 1;
+	public static long getFirst_id() {
+		return first_id;
+	}
+
+	public static void setFirst_id(long first_id) {
+		JlmEpisimEverythingGoes.first_id = first_id;
+	}
+
+	public static long getSecond_id() {
+		return second_id;
+	}
+
+	public static void setSecond_id(long second_id) {
+		JlmEpisimEverythingGoes.second_id = second_id;
+	}
+	final public static String RUN_ID = "/" + first_id + "/" + second_id;
 	final public static int iterations = 90;
 	final public static double ultraOrthodoxInfectionRate = 1;
 	final public static double secularInfectionRate = 1;
