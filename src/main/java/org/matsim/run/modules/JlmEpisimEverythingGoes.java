@@ -195,8 +195,9 @@ public class JlmEpisimEverythingGoes extends AbstractModule {
 		EpisimConfigGroup episimConfig = ConfigUtils.addOrGetModule(config, EpisimConfigGroup.class);
 		config.global().setCoordinateSystem("EPSG:2039");
 		Random rand = new Random();
-		config.global().setRandomSeed(-5497945738807936953L);
+//		config.global().setRandomSeed(-5497945738807936953L);
 //		config.global().setRandomSeed(rand.nextLong());
+		config.global().setRandomSeed(rand_seed);
 		config.controler().setOutputDirectory(OUTPUT_FOLDER + RUN_ID + "/");
 		config.facilities().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/facilities1.0.fixed.xml.gz");
 		config.network().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/11.output_network.xml.gz");
