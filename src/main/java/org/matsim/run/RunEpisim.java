@@ -38,6 +38,7 @@ import org.matsim.core.controler.OutputDirectoryLogging;
 import org.matsim.episim.EpisimModule;
 import org.matsim.episim.EpisimRunner;
 import org.matsim.run.modules.JlmEpisimEverythingGoes;
+import org.matsim.run.modules.JlmParamsHolder;
 import org.matsim.run.modules.OpenBerlinScenario;
 import picocli.CommandLine;
 
@@ -110,10 +111,10 @@ public final class RunEpisim implements Callable<Integer> {
 	private long rand_seed;
 	
 	@CommandLine.Option(names = "--first_id", description = "first id.", defaultValue = "1")
-	private long first_id;
+	private int first_id;
 	
 	@CommandLine.Option(names = "--second_id", description = "second id.", defaultValue = "1")
-	private long second_id;
+	private int second_id;
 	
 	@CommandLine.Parameters(hidden = true)
 	private String[] remainder;
@@ -254,9 +255,10 @@ public final class RunEpisim implements Callable<Integer> {
 		}
 
 		log.info("Starting with modules: {}", modules);
-		JlmEpisimEverythingGoes.setRand_seed(rand_seed);
-		JlmEpisimEverythingGoes.setFirst_id(first_id);
-		JlmEpisimEverythingGoes.setSecond_id(second_id);
+		JlmParamsHolder.setRand_seed(rand_seed);
+		JlmParamsHolder.setFirst_id(first_id);
+		JlmParamsHolder.setSecond_id(second_id);
+		JlmParamsHolder.setIterations(maxIterations);
 		Injector injector = Guice.createInjector(Modules.override(new EpisimModule()).with(modules));
 		// yyyyyy In MATSim, the use of "override" in the production code was a consequence of the original design, which was a framework with default modules, and the
 		// capability to replace them was added later.  Most of us agree that this went against the intent of Guice, which we interpret as forcing users to provide unique
