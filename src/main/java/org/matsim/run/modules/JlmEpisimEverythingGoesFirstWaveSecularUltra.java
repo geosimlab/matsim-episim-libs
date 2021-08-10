@@ -207,7 +207,7 @@ public class JlmEpisimEverythingGoesFirstWaveSecularUltra extends AbstractModule
 		episimConfig.setInitialInfections(IntStream.of(diseaseimport).sum());
 		episimConfig.setFacilitiesHandling(EpisimConfigGroup.FacilitiesHandling.snz);
 		episimConfig.setSampleSize(1);
-		episimConfig.setCalibrationParameter(0.0000015);
+		episimConfig.setCalibrationParameter(0.0000018);
 		episimConfig.setInitialInfectionDistrict("yes");
 //		episimConfig.setSnapshotSeed(SnapshotSeed.reseed);
 		episimConfig.setSnapshotInterval(50);
@@ -233,8 +233,8 @@ public class JlmEpisimEverythingGoesFirstWaveSecularUltra extends AbstractModule
 		double group_b_open_rate_closing_date = 1;
 //		//		end of first closure
 		LocalDate closingDateHarder= LocalDate.of(2020, 3, 25);
-		double group_secular_a_open_rate_closingDateHarder = 0.4;
-		double group_ultra_a_open_rate_closingDateHarder = 0.4;
+		double group_secular_a_open_rate_closingDateHarder = 0.3;
+		double group_ultra_a_open_rate_closingDateHarder = 0.3;
 		double group_b_open_rate_closingDateHarder = 1;
 		LocalDate openingDate= LocalDate.of(2020, 5, 5);
 		double group_secular_a_open_rate_opening_date = 0.45;
