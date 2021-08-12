@@ -198,7 +198,7 @@ public class JlmEpisimEverythingGoesFirstWaveSecular extends AbstractModule {
 		episimConfig.setInputEventsFile(url);
 		episimConfig.setStartDate(startDate);
 		//poisson first sick - 36*3.333 patients
-		int[] diseaseimport = {2,6,5,3,5,3,4,5,8,6,8,8,3,5,2,2,6,2,7,5,3,5,6,4,4,5,8,4,5,3,8,6,10,8,9,7,5,5,4,3,5,7,6,5,6,7,5,4,3,3,6,1,4,3,3,4,6,2,6,6,2,4,4,5,7,6,2,5,4,1,4,5,6,8,10,3,5,6,5,4,5,4,8,4,5,5,4,3,4,7};
+		int[] diseaseimport = {6,5,4,5,3,2,2,4,4,9,2,3,4,4,0,5,2,2,4,6,5,1,1,3,5,2,1,0,3,2,1,2,4,2,3,1,1,3,1,1,0,2,4,3,4,3,4,3,4,2,4,0,6,1,4,0,5,3,1,3,4,7,4,3,4,1,1,4,2,2,4,2,2,3,3,1,3,4,2,2,2,5,1,0,6,3,9,4,3,2};
 		Map<LocalDate, Integer> intialInfections = new HashMap<LocalDate,Integer>();
 		for(int j = 0; j < JlmParamsHolder.getIterations();j++) {
 			intialInfections.put(startDate.plusDays(j), diseaseimport[j]);
@@ -207,7 +207,7 @@ public class JlmEpisimEverythingGoesFirstWaveSecular extends AbstractModule {
 		episimConfig.setInitialInfections(IntStream.of(diseaseimport).sum());
 		episimConfig.setFacilitiesHandling(EpisimConfigGroup.FacilitiesHandling.snz);
 		episimConfig.setSampleSize(1);
-		episimConfig.setCalibrationParameter(0.0000015);
+		episimConfig.setCalibrationParameter(0.0000018);
 		episimConfig.setInitialInfectionDistrict("yes");
 //		episimConfig.setSnapshotSeed(SnapshotSeed.reseed);
 		episimConfig.setSnapshotInterval(50);
@@ -228,13 +228,13 @@ public class JlmEpisimEverythingGoesFirstWaveSecular extends AbstractModule {
 		String[] group_ultra_b_activities = {"pt", "work_internal_Ultra-Orthodox", "other_internal_Ultra-Orthodox", "fjlm_internal_Ultra-Orthodox", "tjlm_internal_Ultra-Orthodox",};
 		//		first clsure
 		LocalDate closingDate = LocalDate.of(2020, 3, 15);
-		double group_secular_a_open_rate_closing_date = 0.7;
-		double group_ultra_a_open_rate_closing_date = 0.9;
+		double group_secular_a_open_rate_closing_date = 0.8;
+		double group_ultra_a_open_rate_closing_date = 1;
 		double group_b_open_rate_closing_date = 1;
 //		//		end of first closure
 		LocalDate closingDateHarder= LocalDate.of(2020, 3, 25);
-		double group_secular_a_open_rate_closingDateHarder = 0.4;
-		double group_ultra_a_open_rate_closingDateHarder = 0.4;
+		double group_secular_a_open_rate_closingDateHarder = 0.3;
+		double group_ultra_a_open_rate_closingDateHarder = 0.3;
 		double group_b_open_rate_closingDateHarder = 1;
 		LocalDate openingDate= LocalDate.of(2020, 5, 5);
 		double group_secular_a_open_rate_opening_date = 0.45;
