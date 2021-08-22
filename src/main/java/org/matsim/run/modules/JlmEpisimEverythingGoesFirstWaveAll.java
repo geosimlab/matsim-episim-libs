@@ -74,48 +74,13 @@ public class JlmEpisimEverythingGoesFirstWaveAll extends AbstractModule {
 	final public static String JLM_RESTRICTIONS_GROUPS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions_groups.csv";
 
 	final public static String OUTPUT_FOLDER = "C:/GeoSimLab/episim_jlm/output";
-	public static long first_id = 1;
-	public static long second_id = 1;
-	public static long getFirst_id() {
-		return first_id;
-	}
 
-	public static void setFirst_id(long first_id) {
-		JlmEpisimEverythingGoesFirstWaveAll.first_id = first_id;
-	}
 
-	public static long getSecond_id() {
-		return second_id;
-	}
 
-	public static void setSecond_id(long second_id) {
-		JlmEpisimEverythingGoesFirstWaveAll.second_id = second_id;
-	}
-//	final public static String RUN_ID = "/" + first_id + "/" + second_id;
-	public static int iterations = 90;
-	public static int getIterations() {
-		return iterations;
-	}
-
-	public static void setIterations(int iterations) {
-		JlmEpisimEverythingGoesFirstWaveAll.iterations = iterations;
-	}
+	
 	final public static double ultraOrthodoxInfectionRate = 1;
 	final public static double secularInfectionRate = 1;
-	public static long rand_seed = 1;
-	/**
-	 * Activity names of the default params from
-	 * {@link #addDefaultParams(EpisimConfigGroup)}.
-	 */
-
-	public static long getRand_seed() {
-		return rand_seed;
-	}
-
-	public static void setRand_seed(long rand_seed) {
-		JlmEpisimEverythingGoesFirstWaveAll.rand_seed = rand_seed;
-	}
-
+	
 	/**
 	 * Adds default parameters that should be valid for most scenarios.
 	 */
@@ -221,8 +186,8 @@ public class JlmEpisimEverythingGoesFirstWaveAll extends AbstractModule {
 		Random rand = new Random();
 //		config.global().setRandomSeed(-5497945738807936953L);
 //		config.global().setRandomSeed(rand.nextLong());
-		config.global().setRandomSeed(rand_seed);
-		String RUN_ID = "/" + first_id + "/" + second_id;
+		config.global().setRandomSeed(JlmParamsHolder.getRand_seed());
+		String RUN_ID = "/" + JlmParamsHolder.getFirst_id() + "/" + JlmParamsHolder.getSecond_id();
 		config.controler().setOutputDirectory(OUTPUT_FOLDER + RUN_ID + "/");
 		config.facilities().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/facilities1.0.fixed.xml.gz");
 		config.network().setInputFile("C:/GeoSimLab/episim_jlm/Input_data/matsim_files/11.output_network.xml.gz");
@@ -233,16 +198,16 @@ public class JlmEpisimEverythingGoesFirstWaveAll extends AbstractModule {
 		episimConfig.setInputEventsFile(url);
 		episimConfig.setStartDate(startDate);
 		//poisson first sick - 36*3.333 patients
-		int[] diseaseimport = {12,11,14,10,10,10,5,6,10,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+		int[] diseaseimport = {6,5,4,5,3,2,2,4,4,9,2,3,4,4,0,5,2,2,4,6,5,1,1,3,5,2,1,0,3,2,1,2,4,2,3,1,1,3,1,1,0,2,4,3,4,3,4,3,4,2,4,0,6,1,4,0,5,3,1,3,4,7,4,3,4,1,1,4,2,2,4,2,2,3,3,1,3,4,2,2,2,5,1,0,6,3,9,4,3,2};
 		Map<LocalDate, Integer> intialInfections = new HashMap<LocalDate,Integer>();
-		for(int j = 0; j < iterations;j++) {
+		for(int j = 0; j < JlmParamsHolder.getIterations();j++) {
 			intialInfections.put(startDate.plusDays(j), diseaseimport[j]);
 		}
 		episimConfig.setInfections_pers_per_day(intialInfections);
 		episimConfig.setInitialInfections(IntStream.of(diseaseimport).sum());
 		episimConfig.setFacilitiesHandling(EpisimConfigGroup.FacilitiesHandling.snz);
 		episimConfig.setSampleSize(1);
-		episimConfig.setCalibrationParameter(0.0000015);
+		episimConfig.setCalibrationParameter(0.0000018);
 		episimConfig.setInitialInfectionDistrict("yes");
 //		episimConfig.setSnapshotSeed(SnapshotSeed.reseed);
 		episimConfig.setSnapshotInterval(50);
@@ -263,13 +228,13 @@ public class JlmEpisimEverythingGoesFirstWaveAll extends AbstractModule {
 		String[] group_ultra_b_activities = {"pt", "work_internal_Ultra-Orthodox", "other_internal_Ultra-Orthodox", "fjlm_internal_Ultra-Orthodox", "tjlm_internal_Ultra-Orthodox",};
 		//		first clsure
 		LocalDate closingDate = LocalDate.of(2020, 3, 15);
-		double group_secular_a_open_rate_closing_date = 0.7;
-		double group_ultra_a_open_rate_closing_date = 0.9;
+		double group_secular_a_open_rate_closing_date = 0.8;
+		double group_ultra_a_open_rate_closing_date = 1;
 		double group_b_open_rate_closing_date = 1;
 //		//		end of first closure
 		LocalDate closingDateHarder= LocalDate.of(2020, 3, 25);
-		double group_secular_a_open_rate_closingDateHarder = 0.4;
-		double group_ultra_a_open_rate_closingDateHarder = 0.2;
+		double group_secular_a_open_rate_closingDateHarder = 0.3;
+		double group_ultra_a_open_rate_closingDateHarder = 0.3;
 		double group_b_open_rate_closingDateHarder = 1;
 		LocalDate openingDate= LocalDate.of(2020, 5, 5);
 		double group_secular_a_open_rate_opening_date = 0.45;
