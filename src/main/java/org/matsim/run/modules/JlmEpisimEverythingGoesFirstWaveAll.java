@@ -166,7 +166,7 @@ public class JlmEpisimEverythingGoesFirstWaveAll extends AbstractModule {
 
 	@Override
 	protected void configure() {
-		bind(ContactModel.class).to(HouseholdSecularUltraContactModel.class).in(Singleton.class);
+		bind(ContactModel.class).to(HouseholdContactModel.class).in(Singleton.class);
 		bind(ProgressionModel.class).to(AgeDependentProgressionModel.class).in(Singleton.class);
 		bind(InitialInfectionHandler.class).to(RandomInitialInfections.class).in(Singleton.class);
 //		bind(VaccinationModel.class).to(RandomVaccination.class).in(Singleton.class);
