@@ -208,7 +208,7 @@ public class JlmEpisimEverythingGoesFirstWaveAll extends AbstractModule {
 		episimConfig.setFacilitiesHandling(EpisimConfigGroup.FacilitiesHandling.snz);
 		episimConfig.setSampleSize(1);
 		episimConfig.setCalibrationParameter(0.0000018);
-		episimConfig.setInitialInfectionDistrict("yes");
+//		episimConfig.setInitialInfectionDistrict("yes");
 //		episimConfig.setSnapshotSeed(SnapshotSeed.reseed);
 		episimConfig.setSnapshotInterval(50);
 		//		episimConfig.setStartFromSnapshot("C:/GeoSimLab/episim_jlm/output/91/2/episim-snapshot-300-2020-12-20.zip");
