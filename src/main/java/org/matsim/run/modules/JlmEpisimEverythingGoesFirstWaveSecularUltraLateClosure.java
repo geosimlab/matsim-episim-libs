@@ -234,7 +234,7 @@ public class JlmEpisimEverythingGoesFirstWaveSecularUltraLateClosure extends Abs
 //		//		end of first closure
 		LocalDate closingDateHarder= LocalDate.of(2020, 3, 25);
 		double group_secular_a_open_rate_closingDateHarder = 0.3;
-		double group_ultra_a_open_rate_closingDateHarder = 0.3;
+		double group_ultra_a_open_rate_closingDateHarder = 0.15;
 		double group_b_open_rate_closingDateHarder = 1;
 		LocalDate openingDate= LocalDate.of(2020, 5, 5);
 		double group_secular_a_open_rate_opening_date = 0.45;

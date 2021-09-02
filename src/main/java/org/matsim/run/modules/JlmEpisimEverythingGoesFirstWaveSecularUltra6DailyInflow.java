@@ -66,8 +66,8 @@ import org.matsim.episim.utils.ReadRestrictions;
  * Scenario based on the publicly available OpenBerlin scenario
  * (https://github.com/matsim-scenarios/matsim-berlin).
  */
-public class JlmEpisimEverythingGoesFirstWaveSecularUltraEarlyClosure extends AbstractModule {
-	private static final Logger log = Logger.getLogger(JlmEpisimEverythingGoesFirstWaveSecularUltraEarlyClosure.class);
+public class JlmEpisimEverythingGoesFirstWaveSecularUltra6DailyInflow extends AbstractModule {
+	private static final Logger log = Logger.getLogger(JlmEpisimEverythingGoesFirstWaveSecularUltra6DailyInflow.class);
 
 
 	final public static String JLM_RESTRICTIONS = "C:/GeoSimLab/episim_jlm/Input_data/raw/restrictions.csv";
@@ -198,7 +198,7 @@ public class JlmEpisimEverythingGoesFirstWaveSecularUltraEarlyClosure extends Ab
 		episimConfig.setInputEventsFile(url);
 		episimConfig.setStartDate(startDate);
 		//poisson first sick - 36*3.333 patients
-		int[] diseaseimport = {6,5,4,5,3,2,2,4,4,9,2,3,4,4,0,5,2,2,4,6,5,1,1,3,5,2,1,0,3,2,1,2,4,2,3,1,1,3,1,1,0,2,4,3,4,3,4,3,4,2,4,0,6,1,4,0,5,3,1,3,4,7,4,3,4,1,1,4,2,2,4,2,2,3,3,1,3,4,2,2,2,5,1,0,6,3,9,4,3,2};
+		int[] diseaseimport = {3,6,5,13,7,6,9,7,10,4,5,7,7,7,8,8,10,5,3,4,4,6,4,4,7,7,7,4,2,3,7,7,9,7,3,6,10,3,8,3,6,7,6,5,5,9,9,2,4,12,5,6,7,6,4,6,3,6,2,4,4,8,5,7,6,6,7,3,6,6,4,4,7,4,10,10,5,2,7,4,8,8,6,4,3,2,7,10,10,8};
 		Map<LocalDate, Integer> intialInfections = new HashMap<LocalDate,Integer>();
 		for(int j = 0; j < JlmParamsHolder.getIterations();j++) {
 			intialInfections.put(startDate.plusDays(j), diseaseimport[j]);
@@ -229,7 +229,7 @@ public class JlmEpisimEverythingGoesFirstWaveSecularUltraEarlyClosure extends Ab
 		//		first clsure
 		LocalDate closingDate = LocalDate.of(2020, 3, 15);
 		double group_secular_a_open_rate_closing_date = 0.8;
-		double group_ultra_a_open_rate_closing_date = 0.8;
+		double group_ultra_a_open_rate_closing_date = 1;
 		double group_b_open_rate_closing_date = 1;
 //		//		end of first closure
 		LocalDate closingDateHarder= LocalDate.of(2020, 3, 25);
