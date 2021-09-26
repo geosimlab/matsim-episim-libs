@@ -228,7 +228,7 @@ public class JlmEpisimEverythingGoesFirstWaveSecularUltra extends AbstractModule
 		String[] group_ultra_b_activities = {"pt", "work_internal_Ultra-Orthodox", "other_internal_Ultra-Orthodox", "fjlm_internal_Ultra-Orthodox", "tjlm_internal_Ultra-Orthodox",};
 		//		first clsure
 		LocalDate closingDate = LocalDate.of(2020, 3, 15);
-		double group_secular_a_open_rate_closing_date = 0.850;
+		double group_secular_a_open_rate_closing_date = 0.90;
 		double group_ultra_a_open_rate_closing_date = 1;
 		double group_b_open_rate_closing_date = 1;
 //		//		end of first closure
